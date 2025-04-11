@@ -5,3 +5,7 @@ authToken = "Basic amFtdW5kOnBlbmd1aW5zcGVuZ3VpbnM=";
 window.onload = function() {
     init();
 }
+
+function validate(validationtype) {
+    
+}
