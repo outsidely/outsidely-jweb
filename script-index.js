@@ -21,9 +21,13 @@ function loadActivities(url) {
                 div.appendChild(document.createElement('hr'));
 
                 img = document.createElement('img');
-                img.setAttribute('src', baseurl + a.previewurl);
-                img.setAttribute('width', '200px');
-                img.setAttribute('height', '200px');
+                if (a.media.length > 0) {
+                    img.setAttribute('src', baseurl + a.media[0].mediapreviewurl);
+                }
+                else {
+                    img.setAttribute('src', baseurl + a.previewurl);
+                }
+                img.setAttribute('class', 'fitpreview');
                 div.appendChild(img);
 
                 properties = ['userid', 'name', 'description', 'activitytype', 'starttime', 'distance', 'time', 'ascent', 'speed'];

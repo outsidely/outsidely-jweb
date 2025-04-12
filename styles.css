@@ -1,0 +1,24 @@
+body {
+    font-size: large;
+    font-family: Arial, sans-serif;
+    }
+a {
+    color: #097450;
+}
+a:hover {
+    color: #000000;
+}
+@media (max-width: 600px) { 
+    body {
+        font-size: x-large;
+    }
+    input,textarea,select {
+        font-size: x-large;
+    }
+} 
+
+.fitpreview {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+}
