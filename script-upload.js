@@ -2,6 +2,8 @@ gear = null;
 
 function init() {
 
+    $('#progress').hide();
+
     fillValidations('visibilitytype', 'visibilitytype');
     fillValidations('activitytype', 'activitytype');
 
@@ -23,6 +25,10 @@ function init() {
     $('#activitytype').change();
 
     $('#upload-button').on('click', function() {
+
+        $('#upload-button').hide();
+        $('#progress').show();
+
         var formData = new FormData();
         formData.append('upload', document.getElementById('upload').files[0]);
         $('#upload-form input, select, textarea').each(function(){
@@ -30,9 +36,10 @@ function init() {
             v = $(this).val();
             if (n != 'upload' && (v ?? 0) != 0)
             {
-                formData.append(n,v);
+                formData.append(n, v);
             }
         });
+
         $.ajax({
             url: baseurl + 'upload/activity',
             type: 'POST',
@@ -41,12 +48,16 @@ function init() {
             processData: false,
             contentType: false,
             success: function(json) {
+                $('#upload-button').show();
+                $('#progress').hide();
                 alert("Activity uploaded successfully");
+                window.location.href = 'upload.html';
             },
             error: function(xhr, status, error) {
                 alert("Error uploading activity");
             }
         });
+
     });
     
 }
