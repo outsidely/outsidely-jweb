@@ -25,10 +25,14 @@ function init() {
     $('#upload-button').on('click', function() {
         var formData = new FormData();
         formData.append('upload', document.getElementById('upload').files[0]);
-        formData.append('visibilitytype', document.getElementById('visibilitytype').value);
-        formData.append('activitytype', document.getElementById('activitytype').value);
-        formData.append('name', document.getElementById('name').value);
-        formData.append('description', document.getElementById('description').value);
+        $('#upload-form input, select, textarea').each(function(){
+            n = $(this).attr('name');
+            v = $(this).val();
+            if (n != 'upload' && (v ?? 0) != 0)
+            {
+                formData.append(n,v);
+            }
+        });
         $.ajax({
             url: baseurl + 'upload/activity',
             type: 'POST',
