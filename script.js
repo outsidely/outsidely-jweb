@@ -65,3 +65,19 @@ function loadActivities(url, buttonid, progressid, includepreview) {
         }
       });
 }
+
+function fillValidations(validationtype) {
+    $.ajax({
+        url: baseurl + 'validate/' + validationtype,
+        headers: {"Authorization": authToken}, 
+        success: function(json) {
+            for (i in json.validations) {
+                v = json.validations[i]
+                o = document.createElement('option');
+                o.setAttribute('value', v.activitytype);
+                o.innerText = v.label;
+                document.getElementById(validationtype).appendChild(o);
+            }
+        }
+      });
+}

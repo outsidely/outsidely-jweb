@@ -4,8 +4,8 @@ function init() {
 
     $('#progress').hide();
 
-    fillValidations('visibilitytype', 'visibilitytype');
-    fillValidations('activitytype', 'activitytype');
+    fillValidations('visibilitytype');
+    fillValidations('activitytype');
 
     $('#activitytype').change(function() {
         if (gear == null) {
@@ -62,21 +62,7 @@ function init() {
     
 }
 
-function fillValidations(validationtype, selectid) {
-    $.ajax({
-        url: baseurl + 'validate/' + validationtype,
-        headers: {"Authorization": authToken}, 
-        success: function(json) {
-            for (i in json.validations) {
-                v = json.validations[i]
-                o = document.createElement('option');
-                o.setAttribute('value', v.activitytype);
-                o.innerText = v.label;
-                document.getElementById(selectid).appendChild(o);
-            }
-        }
-      });
-}
+
 
 function fillGear(json) {
     $('#gearid').empty();
