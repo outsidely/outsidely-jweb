@@ -1,13 +1,27 @@
-baseurl = 'https://outsidely-geo-app.azurewebsites.net/api/';
-authToken = "Basic amFtdW5kOnBlbmd1aW5zcGVuZ3VpbnM=";
-nexturl = baseurl + 'activities';
+var baseurl = 'https://outsidely-geo-app.azurewebsites.net/api/';
+var authToken = "Basic amFtdW5kOnBlbmd1aW5zcGVuZ3VpbnM=";
+var nexturl = baseurl + 'activities';
+var userid = '';
+var activityid = '';
 
 window.onload = function() {
+
     $('#login').attr('href', baseurl + 'login?redirecturl=http%3A%2F%2Flocalhost%3A8080%2Findex.html');
+
+    qs = new URLSearchParams(location.search);
+    userid = qs.get('userid');
+    activityid = qs.get('activityid');
+
     init();
+
 }
 
-function loadActivities(url, buttonid, progressid, includepreview) {
+function loadActivities(url, buttonid, progressid, includepreview, callback) {
+
+    if (typeof callback === "undefined") {
+        callback = function() {};
+    }
+    
 
     $('#' + buttonid).hide();
     $('#' + progressid).show();
@@ -43,11 +57,19 @@ function loadActivities(url, buttonid, progressid, includepreview) {
                     
                 }
 
-                properties = ['userid', 'name', 'description', 'activitytype', 'starttime', 'distance', 'time', 'ascent', 'speed'];
+                properties = ['userid', 'name', 'description', 'activitytype', 'starttime', 'distance', 'time', 'ascent', 'speed', 'props', 'comments'];
                 for (i in properties) {
                     try {
-                        if (a[properties[i]].length > 0) {
-                            $(div).append('<br/><b>' + properties[i] + '</b>: ' + a[properties[i]]);
+                        isarray = Array.isArray(a[properties[i]]);
+                        if (a[properties[i]].length > 0 || isarray) {
+                            var v;
+                            if (isarray) {
+                                v = a[properties[i]].length;
+                            }
+                            else {
+                                v = a[properties[i]];
+                            }
+                            $(div).append('<br/><b>' + properties[i] + ':</b> ' + v.toString());
                         }
                     }
                     catch (e) {}
@@ -62,6 +84,9 @@ function loadActivities(url, buttonid, progressid, includepreview) {
 
             $('#' + buttonid).show();
             $('#' + progressid).hide();
+
+            callback(json);
+
         }
       });
 }
@@ -81,3 +106,17 @@ function fillValidations(validationtype) {
         }
       });
 }
+
+function deleteObject(type, activityid, commentid) {
+    $.ajax({
+      type: "DELETE",
+      url: baseurl + "delete/" + type + "/" + activityid + "/" + commentid, 
+      headers: {"Authorization": authToken}, 
+      dataType: "json", 
+      success: function(response){
+        window.alert("delete successful");
+        location.reload();
+      }
+    });
+  }
+  

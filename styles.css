@@ -37,3 +37,8 @@ a:hover {
     margin: 10px auto;
     border: 1px solid black;
 }
+textarea {
+    height: 120px;
+    width: 100%;
+    max-width: 320px;
+}

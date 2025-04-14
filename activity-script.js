@@ -4,10 +4,58 @@ var activitydata = [];
 var marker;
 
 function init() {
-    qs = new URLSearchParams(window.location.search);
-    loadActivities(baseurl + 'activities/' + qs.get('userid') + '/' + qs.get('activityid'), 'none', 'none', false);
-    initMap();
-    initChart();
+
+  $('#createprops').click(function() {
+    $.ajax({
+      type: "POST",
+      url: baseurl + "create/prop/" + userid + "/" + activityid, 
+      headers: {"Authorization": authToken}, 
+      data: JSON.stringify({}),
+      dataType: "json", 
+      success: function(response){
+        window.alert("create successful");
+        location.reload();
+      }
+    });
+  });
+
+  $('#createcomment').click(function() {
+    $.ajax({
+      type: "POST",
+      url: baseurl + "create/comment/" + userid + "/" + activityid, 
+      headers: {"Authorization": authToken}, 
+      data: JSON.stringify({comment: $('#commenttext').val()}),
+      dataType: "json", 
+      success: function(response){
+        window.alert("create successful");
+        location.reload();
+      }
+    });
+  });
+
+  loadActivities(baseurl + 'activities/' + userid + '/' + activityid, 'none', 'none', false, activitiesLoaded);
+  initMap();
+  initChart();
+
+}
+
+function activitiesLoaded(json) {
+  m = json.activities[0].media;
+  for (i in m){
+      $('#media').append('<li><a target="_blank" href="' + baseurl + m[i].mediafullurl + '"><img class="fitpreview" src="' + baseurl + m[i].mediapreviewurl + '"></a></li>');
+  }
+  p = json.activities[0].props;
+  for (i in p){
+      $('#props').append('<li>' + p[i].userid + '</li>');
+  }
+  c = json.activities[0].comments;
+  for (i in c){
+    var deletehtml = '';
+    if (c[i].userid == userid) {
+      deletehtml = ' <input type="button" onclick="deleteObject(\'comment\',\'' + json.activities[0].activityid + '\',\'' + c[i].commentid + '\')" value="Delete"></input>';
+    }
+      $('#comments').append('<li>' + c[i].userid + ' - ' + c[i].createtime + ' - ' + c[i].comment + deletehtml + '</li>');
+  }
 }
 
 function initMap() {
@@ -17,10 +65,9 @@ function initMap() {
       attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
   }).addTo(map);
   activityid = new URLSearchParams(window.location.search).get('activityid');
-  const getCookieValue = (name) => (document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)')?.pop() || '');
   $.ajax({
-    url:"https://outsidely-geo-app.azurewebsites.net/api/data/geojson/" + activityid, 
-    headers: {"Authorization": "Basic " + getCookieValue("key")}, 
+    url: baseurl + "data/geojson/" + activityid, 
+    headers: {"Authorization": authToken}, 
     dataType: "json", 
     success: function(response){
       addGeoJson(response);
@@ -35,10 +82,9 @@ function addGeoJson(geojson){
 
 function initChart() {
   activityid = new URLSearchParams(window.location.search).get('activityid');
-  const getCookieValue = (name) => (document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)')?.pop() || '');
   $.ajax({
-    url:"https://outsidely-geo-app.azurewebsites.net/api/data/activity/" + activityid, 
-    headers: {"Authorization": "Basic " + getCookieValue("key")}, 
+    url: baseurl + "data/activity/" + activityid, 
+    headers: {"Authorization": authToken}, 
     dataType: "json", 
     success: function(response){
       createChart(response);
