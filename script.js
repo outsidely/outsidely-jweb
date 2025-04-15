@@ -3,14 +3,18 @@ var authToken = "Basic amFtdW5kOnBlbmd1aW5zcGVuZ3VpbnM=";
 var nexturl = baseurl + 'activities';
 var userid = '';
 var activityid = '';
+menu = [{url: "index.html", label: "Activity Feed"},{url: "upload.html", label: "Create Activity"},{url: "profile.html", label: "Your Profile"},{url: baseurl + "login?redirecturl=http%3A%2F%2Flocalhost%3A8080%2Findex.html", label: "Backend Login"}];
 
 window.onload = function() {
-
-    $('#login').attr('href', baseurl + 'login?redirecturl=http%3A%2F%2Flocalhost%3A8080%2Findex.html');
 
     qs = new URLSearchParams(location.search);
     userid = qs.get('userid');
     activityid = qs.get('activityid');
+    
+    for (i in menu) {
+        m = menu[i];
+        $('#menu').append('<li><a href="' + m.url + '">' + m.label + '</a></li>');
+    }
 
     init();
 
@@ -99,7 +103,7 @@ function fillValidations(validationtype) {
             for (i in json.validations) {
                 v = json.validations[i]
                 o = document.createElement('option');
-                o.setAttribute('value', v.activitytype);
+                o.setAttribute('value', v[validationtype]);
                 o.innerText = v.label;
                 document.getElementById(validationtype).appendChild(o);
             }
