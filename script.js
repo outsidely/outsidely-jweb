@@ -4,7 +4,7 @@ var nexturl = baseurl + 'activities';
 var userid = '';
 var activityid = '';
 var whoami = '';
-var menu = [{url: "index.html", label: "Activity Feed"},{url: "upload.html", label: "Create Activity"},{url: "profile.html", label: "Your Profile"},{url: baseurl + "login?redirecturl=http%3A%2F%2Flocalhost%3A8080%2Findex.html", label: "Backend Login"},{url: "login.html", label: "Frontend Login"}];
+var menu = [{url: "index.html", label: "Activity Feed"},{url: "upload.html", label: "Create Activity"},{url: "profile.html", label: "Your Profile"},{url: baseurl + "login?redirecturl=" + encodeURIComponent(location.protocol + '://' + location.host), label: "Backend Login"},{url: "login.html", label: "Frontend Login"}];
 
 window.onload = function() {
 
