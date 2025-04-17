@@ -5,6 +5,15 @@ var marker;
 
 function init() {
 
+  if (userid == whoami) {
+    $('#edit-button').click(function() {
+      window.location.href = 'edit.html?userid=' + userid + '&activityid=' + activityid;
+    });
+  }
+  else {
+    $('#edit-button').hide();
+  }
+
   $('#createprops').click(function() {
     $.ajax({
       type: "POST",
@@ -42,19 +51,23 @@ function init() {
 function activitiesLoaded(json) {
   m = json.activities[0].media;
   for (i in m){
-      $('#media').append('<li><a target="_blank" href="' + baseurl + m[i].mediafullurl + '"><img class="fitpreview" src="' + baseurl + m[i].mediapreviewurl + '"></a></li>');
+    var deletehtml = '';
+    if (userid == whoami) {
+      deletehtml = ' <input type="button" onclick="apiDelete(\'media\',\'' + json.activities[0].activityid + '\',\'' + m[i].mediaid + '\')" value="Delete"></input>';
+    }
+    $('#media').append('<li><a target="_blank" href="' + baseurl + m[i].mediafullurl + '"><img class="fitpreview" src="' + baseurl + m[i].mediapreviewurl + '"></a>'+ deletehtml + '</li>');
   }
   p = json.activities[0].props;
   for (i in p){
-      $('#props').append('<li>' + p[i].userid + '</li>');
+    $('#props').append('<li>' + p[i].userid + '</li>');
   }
   c = json.activities[0].comments;
   for (i in c){
     var deletehtml = '';
-    if (c[i].userid == userid) {
-      deletehtml = ' <input type="button" onclick="deleteObject(\'comment\',\'' + json.activities[0].activityid + '\',\'' + c[i].commentid + '\')" value="Delete"></input>';
+    if (c[i].userid == whoami) {
+      deletehtml = ' <input type="button" onclick="apiDelete(\'comment\',\'' + json.activities[0].activityid + '\',\'' + c[i].commentid + '\')" value="Delete"></input>';
     }
-      $('#comments').append('<li>' + c[i].userid + ' - ' + c[i].createtime + ' - ' + c[i].comment + deletehtml + '</li>');
+    $('#comments').append('<li>' + c[i].userid + ' - ' + c[i].createtime + ' - ' + c[i].comment + deletehtml + '</li>');
   }
 }
 
