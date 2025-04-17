@@ -8,14 +8,6 @@ a {
 a:hover {
     color: #000000;
 }
-@media (max-width: 1024px) { 
-    body {
-        font-size: x-large;
-    }
-    input,textarea,select {
-        font-size: x-large;
-    }
-} 
 
 .fitpreview {
     width: 200px;
@@ -42,3 +34,12 @@ textarea {
     width: 100%;
     max-width: 320px;
 }
+
+@media (max-width: 1024px) { 
+    body {
+        font-size: x-large;
+    }
+    input,textarea,select {
+        font-size: x-large;
+    }
+} 
