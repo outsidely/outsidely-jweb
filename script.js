@@ -1,12 +1,14 @@
 var baseurl = 'https://outsidely-geo-app.azurewebsites.net/api/';
-var authToken = "Basic amFtdW5kOnBlbmd1aW5zcGVuZ3VpbnM=";
+var authToken = '';
 var nexturl = baseurl + 'activities';
 var userid = '';
 var activityid = '';
 var whoami = '';
-menu = [{url: "index.html", label: "Activity Feed"},{url: "upload.html", label: "Create Activity"},{url: "profile.html", label: "Your Profile"},{url: baseurl + "login?redirecturl=http%3A%2F%2Flocalhost%3A8080%2Findex.html", label: "Backend Login"}];
+var menu = [{url: "index.html", label: "Activity Feed"},{url: "upload.html", label: "Create Activity"},{url: "profile.html", label: "Your Profile"},{url: baseurl + "login?redirecturl=http%3A%2F%2Flocalhost%3A8080%2Findex.html", label: "Backend Login"},{url: "login.html", label: "Frontend Login"}];
 
 window.onload = function() {
+
+    authToken = Cookies.get('outsidely');
 
     qs = new URLSearchParams(location.search);
     userid = qs.get('userid');
@@ -22,10 +24,12 @@ window.onload = function() {
         headers: {"Authorization": authToken},
         success: function(json) {
             whoami = json.userid;
-            init();
         },
         error: function(xhr, status, error) {
             alert("Error getting user information");
+        },
+        complete: function() {
+            init();
         }
     });
 
