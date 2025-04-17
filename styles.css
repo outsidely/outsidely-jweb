@@ -35,11 +35,11 @@ textarea {
     max-width: 320px;
 }
 
-@media (max-width: 1024px) { 
+@media (max-width: 600px) { 
     body {
         font-size: x-large;
     }
-    input,textarea,select {
+    input,textarea,select,button {
         font-size: x-large;
     }
 } 
