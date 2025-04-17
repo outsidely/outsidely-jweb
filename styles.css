@@ -8,7 +8,7 @@ a {
 a:hover {
     color: #000000;
 }
-@media (max-width: 600px) { 
+@media (max-width: 1024px) { 
     body {
         font-size: x-large;
     }
