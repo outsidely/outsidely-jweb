@@ -127,7 +127,8 @@ function fillValidations(validationtype) {
 }
 
 function apiDelete(type, id, id2) {
-    var url = baseurl + "delete/" + type + "/" + id;
+    if (confirm("Are you sure you want to delete this " + type + "?")) {
+        var url = baseurl + "delete/" + type + "/" + id;
     if (id2 != undefined) {
         url += "/" + id2;
     }
@@ -141,4 +142,6 @@ function apiDelete(type, id, id2) {
             location.reload();
         }
     });
+    }
+    
 }
