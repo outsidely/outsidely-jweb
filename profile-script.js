@@ -7,17 +7,19 @@ function init() {
     $('#profile-button').click(function() {
 
         var body = {};
-        $('#profile-form input, select, textarea').each(function(){
-            n = $(this).attr('name');
-            v = $(this).val();
-            if (n != 'upload' && (v ?? 0) != 0)
-            {
-                body[n] = v;
+        $('#form-user input, #form-user select, #form-user textarea').each(function(){
+            if (!$(this).attr('name').includes('ignore-')) {
+                n = $(this).attr('name');
+                v = $(this).val();
+                if (n != 'upload' && (v ?? 0) != 0)
+                {
+                    body[n] = v;
+                }
             }
         });
 
         $.ajax({
-            url: baseurl + 'update/user/' + userid,
+            url: baseurl + 'update/user/' + whoami,
             type: 'PATCH',
             headers: {"Authorization": authToken}, 
             data: JSON.stringify(body),
@@ -26,7 +28,7 @@ function init() {
                 location.reload();
             },
             error: function(xhr, status, error) {
-                alert("Error updating profile");
+                alert("Error updating profile" + xhr.responseText);
             }
         });
     });

@@ -4,7 +4,7 @@ var nexturl = baseurl + 'activities';
 var userid = '';
 var activityid = '';
 var whoami = '';
-var menu = [{url: "index.html", label: "Activity Feed"},{url: "upload.html", label: "Create Activity"},{url: "profile.html", label: "Your Profile"},{url: baseurl + "login?redirecturl=" + encodeURIComponent(location.protocol + '://' + location.host), label: "Backend Login"},{url: "login.html", label: "Frontend Login"}];
+var menu = [{url: "index.html", label: "Activity Feed"},{url: "upload.html", label: "Create Activity"},{url: "profile.html", label: "Your Profile"},{url: baseurl + "login?redirecturl=" + encodeURIComponent(location.protocol + '//' + location.host), label: "Backend Login"},{url: "login.html", label: "Frontend Login"}];
 
 window.onload = function() {
 
@@ -127,9 +127,13 @@ function fillValidations(validationtype) {
 }
 
 function apiDelete(type, id, id2) {
+    var url = baseurl + "delete/" + type + "/" + id;
+    if (id2 != undefined) {
+        url += "/" + id2;
+    }
     $.ajax({
         type: "DELETE",
-        url: baseurl + "delete/" + type + "/" + id + "/" + id2, 
+        url: url, 
         headers: {"Authorization": authToken}, 
         dataType: "json", 
         success: function(response){
