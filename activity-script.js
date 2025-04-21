@@ -49,26 +49,34 @@ function init() {
 }
 
 function activitiesLoaded(json) {
+
   m = json.activities[0].media;
   for (i in m){
     var deletehtml = '';
-    if (userid == whoami) {
+    if (json.activities[0].userid == whoami) {
       deletehtml = ' <input type="button" onclick="apiDelete(\'media\',\'' + json.activities[0].activityid + '\',\'' + m[i].mediaid + '\')" value="Delete"></input>';
     }
     $('#media').append('<li><a target="_blank" href="' + baseurl + m[i].mediafullurl + '"><img class="fitpreview" src="' + baseurl + m[i].mediapreviewurl + '"></a>'+ deletehtml + '</li>');
   }
+
   p = json.activities[0].props;
   for (i in p){
-    $('#props').append('<li>' + p[i].userid + '</li>');
+    var deletehtml = '';
+    if (p[i].userid == whoami) {
+      deletehtml = ' <input type="button" onclick="apiDelete(\'prop\',\'' + json.activities[0].activityid + '\')" value="Delete"></input>';
+    }
+    $('#props').append('<li>' + p[i].userid + deletehtml + '</li>');
   }
+
   c = json.activities[0].comments;
   for (i in c){
     var deletehtml = '';
     if (c[i].userid == whoami) {
       deletehtml = ' <input type="button" onclick="apiDelete(\'comment\',\'' + json.activities[0].activityid + '\',\'' + c[i].commentid + '\')" value="Delete"></input>';
     }
-    $('#comments').append('<li>' + c[i].userid + ' - ' + c[i].createtime + ' - ' + c[i].comment + deletehtml + '</li>');
+    $('#comments').append('<li>' + c[i].comment + ' - ' + c[i].userid + ' - ' + c[i].createtime + deletehtml + '</li>');
   }
+
 }
 
 function initMap() {

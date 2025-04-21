@@ -35,6 +35,10 @@ function init() {
         }
     });
 
+    $('#delete-button').click(function() {
+        apiDelete('activity', activityid);
+    });
+
 }
 
 
