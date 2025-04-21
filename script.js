@@ -1,4 +1,4 @@
-var baseurl = 'https://outsidely-geo-app.azurewebsites.net/api/';
+var baseurl = 'https://outsidely.azurewebsites.net/';
 var authToken = '';
 var nexturl = baseurl + 'activities';
 var userid = '';
