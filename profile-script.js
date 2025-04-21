@@ -6,6 +6,11 @@ function init() {
 
     $('#profile-button').click(function() {
 
+        if ($('#password').val() != $('#ignore-password').val()) {
+            alert("Passwords do not match");
+            return;
+        }
+
         var body = {};
         $('#form-user input, #form-user select, #form-user textarea').each(function(){
             if (!$(this).attr('name').includes('ignore-')) {
