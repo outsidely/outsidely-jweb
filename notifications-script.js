@@ -14,9 +14,16 @@ function init() {
                         optionshtml += '<input type="button" onclick="apiAction(\'' + baseurl + o.url + '\',\'' + o.method + '\',\'' + o.body + '\')" value="' + o.text + '"/>';
                     }
                 }
-                html += '<li>' + n.message + ' - ' + n.createtime + optionshtml + '</li>';
+                try {
+                    linkhtml = '<a href="activity.html?userid=' + n.properties.userid + '&activityid=' + n.properties.activityid + '">link</a>';
+                }
+                catch (e) {
+                    linkhtml = '';
+                }
+                html += '<li>' + n.message + ' - ' + linkhtml + ' - ' + n.createtime + optionshtml + '</li>';
                 $('#notifications').html(html);
             }
+            
         }
     });
 
