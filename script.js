@@ -4,7 +4,7 @@ var nexturl = baseurl + 'activities';
 var userid = '';
 var activityid = '';
 var whoami = '';
-var menu = [{url: "index.html", label: "Activity Feed"},{url: "upload.html", label: "Create Activity"},{url: "profile.html", label: "Your Profile"},{url: "notifications.html", label: "Notifications"},{url: baseurl + "login?redirecturl=" + encodeURIComponent(location.protocol + '//' + location.host), label: "Backend Login"},{url: "login.html", label: "Frontend Login"}];
+var menu = [{url: "index.html", label: "Activity Feed"},{url: "upload.html", label: "Create Activity"},{url: "profile.html", label: "Your Profile"},{url: "notifications.html", label: 'Notifications <span id="notificationcount"></span>'},{url: baseurl + "login?redirecturl=" + encodeURIComponent(location.href), label: "Backend Login"},{url: "login.html", label: "Frontend Login"}];
 
 window.onload = function() {
 
@@ -18,6 +18,17 @@ window.onload = function() {
         m = menu[i];
         $('#menu').append('<li><a href="' + m.url + '">' + m.label + '</a></li>');
     }
+
+    $.ajax({
+        url: baseurl + 'read/notifications',
+        headers: {"Authorization": authToken},
+        success: function(json) {
+            count = json.notifications.length;
+            if (count > 0) {
+                $('#notificationcount').html('('+json.notifications.length+')');
+            }
+        }
+    });
 
     $.ajax({
         url: baseurl + 'whoami',

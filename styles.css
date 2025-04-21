@@ -34,6 +34,10 @@ textarea {
     width: 100%;
     max-width: 320px;
 }
+#notificationcount {
+    font-weight: bold;
+    color:red
+}
 
 @media (max-width: 600px) { 
     body {
