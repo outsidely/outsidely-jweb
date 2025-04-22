@@ -38,6 +38,9 @@ textarea {
     font-weight: bold;
     color:red
 }
+.hide {
+    display: none;
+}
 
 @media (max-width: 600px) { 
     body {
