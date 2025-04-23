@@ -61,19 +61,3 @@ function init() {
     });
     
 }
-
-
-
-function fillGear(json) {
-    $('#gearid').empty();
-    for (i in json.gear) {
-        if (json.gear[i].activitytype.toLowerCase() != $('#activitytype').val()) {
-            continue;
-        }
-        g = json.gear[i]
-        o = document.createElement('option');
-        o.setAttribute('value', g.gearid);
-        o.innerText = g.name;
-        document.getElementById('gearid').appendChild(o);
-    }
-}

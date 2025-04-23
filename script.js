@@ -138,6 +138,28 @@ function fillValidations(validationtype) {
       });
 }
 
+function fillGear(json) {
+
+    $('#gearid').empty();
+
+    o = document.createElement('option');
+    o.setAttribute('value', "");
+    o.innerText = "None";
+    document.getElementById('gearid').appendChild(o);
+
+    for (i in json.gear) {
+        if (json.gear[i].activitytype != $('#activitytype').val()) {
+            continue;
+        }
+        g = json.gear[i]
+        o = document.createElement('option');
+        o.setAttribute('value', g.gearid);
+        o.innerText = g.name;
+        document.getElementById('gearid').appendChild(o);
+    }
+    
+}
+
 function apiDelete(type, id, id2) {
     if (confirm("Are you sure you want to delete this " + type + "?")) {
         var url = baseurl + "delete/" + type + "/" + id;
@@ -179,3 +201,4 @@ function apiAction(url, method, body) {
         }
     });
 }
+

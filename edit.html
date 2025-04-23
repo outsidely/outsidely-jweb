@@ -15,22 +15,21 @@
             Outsidely
         </h1>
         <ul id="menu" class="menu"></ul>
-        <!--
         <h2>
             Edit Activity
         </h2>
         <form id="form-edit" enctype="multipart/form-data">
+            <b>Activity Type: </b><select name="activitytype" id="activitytype"></select>
+            <br/>
+            <b>Visibility Type: </b><select name="visibilitytype" id="visibilitytype"></select>
+            <br/>
+            <b>Gear: </b><select name="gearid" id="gearid"></select>
+            <br/>
             <b>Name: </b><input type="text" name="name" id="name"></input>
             <br/>
             <b>Description: </b><input type="text" name="description" id="description"></input>
-            <br/>
-            <b>Activity Type: </b><select name="unitsystem" id="unitsystem"></select>
-            <br/>
-            <b>Gear: </b><select name="gearid" id="gearid"></input>
-            <br/>
-            <input type="button" id="edit-button" value="Edit Activity"></input>
         </form>
-        -->
+        <input type="button" id="edit-button" value="Edit Activity"></input>
         <h2>
             Media
         </h2>
@@ -38,7 +37,7 @@
             <b>File: </b><input type="file" name="upload" id="upload" multiple></input>
         </form>
         <input type="button" id="media-button" value="Upload Media"></input>
-        <div id="progress"><img src="Circles-menu-3.gif"></img></div>
+        <div id="progress" class="hide"><img src="Circles-menu-3.gif"></img></div>
         <h2>
             Delete Activity
         </h2>
