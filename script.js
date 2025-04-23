@@ -88,7 +88,7 @@ function loadActivities(url, buttonid, progressid, includepreview, callback) {
                     
                 }
 
-                properties = ['userid', 'name', 'description', 'activitytype', 'starttime', 'distance', 'time', 'ascent', 'speed', 'props', 'comments'];
+                properties = ['visibilitytype','userid', 'name', 'description', 'activitytype', 'starttime', 'distance', 'time', 'ascent', 'speed', 'props', 'comments'];
                 for (i in properties) {
                     try {
                         isarray = Array.isArray(a[properties[i]]);
