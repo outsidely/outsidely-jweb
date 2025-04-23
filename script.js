@@ -1,3 +1,4 @@
+//var baseurl = 'http://localhost:7071/';
 var baseurl = 'https://outsidely.azurewebsites.net/';
 var authToken = '';
 var nexturl = baseurl + 'activities';
