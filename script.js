@@ -31,12 +31,6 @@ window.onload = function() {
         headers: {"Authorization": authToken},
         success: function(json) {
             whoami = json.userid;
-        },
-        error: function(xhr, status, error) {
-            alert("Error getting user information");
-            location.replace(baseurl + "login?redirecturl=" + encodeURIComponent(location.href));
-        },
-        complete: function() {
             $.ajax({
                 url: baseurl + 'read/notifications',
                 headers: {"Authorization": authToken},
@@ -48,6 +42,10 @@ window.onload = function() {
                     init();
                 }
             });
+        },
+        error: function(xhr, status, error) {
+            alert("Error getting user information");
+            location.replace(baseurl + "login?redirecturl=" + encodeURIComponent(location.href));
         }
     });
 
