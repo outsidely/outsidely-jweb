@@ -1,5 +1,5 @@
-var baseurl = 'http://localhost:7071/';
-//var baseurl = 'https://outsidely.azurewebsites.net/';
+//var baseurl = 'http://localhost:7071/';
+var baseurl = 'https://outsidely.azurewebsites.net/';
 var authToken = '';
 var nexturl = baseurl + 'activities';
 var userid = '';
@@ -8,8 +8,6 @@ var whoami = '';
 var menu = [{url: "index.html", label: "Activity Feed"},{url: "upload.html", label: "Create Activity"},{url: "profile.html", label: "Your Profile"},{url: "notifications.html", label: 'Notifications <span id="notificationcount"></span>'},{url: baseurl + "login?redirecturl=" + encodeURIComponent(location.href), label: "Login"},{url: "javascript:authLogout()", label: "Logout"}];
 
 window.onload = function() {
-
-    authToken = Cookies.get('outsidely');
 
     qs = new URLSearchParams(location.search);
     userid = qs.get('userid');
@@ -25,6 +23,8 @@ window.onload = function() {
         m = menu[i];
         $('#menu').append('<li><a href="' + m.url + '">' + m.label + '</a></li>');
     }
+
+    authToken = Cookies.get('outsidely');
 
     $.ajax({
         url: baseurl + 'read/notifications',
