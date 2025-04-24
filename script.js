@@ -24,7 +24,7 @@ window.onload = function() {
         $('#menu').append('<li><a href="' + m.url + '">' + m.label + '</a></li>');
     }
 
-    authToken = Cookies.get('outsidely');
+    authToken = 'Basic ' + Cookies.get('outsidely');
 
     $.ajax({
         url: baseurl + 'read/notifications',
