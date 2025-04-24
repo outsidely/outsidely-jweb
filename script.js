@@ -1,11 +1,11 @@
-//var baseurl = 'http://localhost:7071/';
-var baseurl = 'https://outsidely.azurewebsites.net/';
+var baseurl = 'http://localhost:7071/';
+//var baseurl = 'https://outsidely.azurewebsites.net/';
 var authToken = '';
 var nexturl = baseurl + 'activities';
 var userid = '';
 var activityid = '';
 var whoami = '';
-var menu = [{url: "index.html", label: "Activity Feed"},{url: "upload.html", label: "Create Activity"},{url: "profile.html", label: "Your Profile"},{url: "notifications.html", label: 'Notifications <span id="notificationcount"></span>'},{url: baseurl + "login?redirecturl=" + encodeURIComponent(location.href), label: "Backend Login"},{url: "login.html", label: "Frontend Login"}];
+var menu = [{url: "index.html", label: "Activity Feed"},{url: "upload.html", label: "Create Activity"},{url: "profile.html", label: "Your Profile"},{url: "notifications.html", label: 'Notifications <span id="notificationcount"></span>'},{url: baseurl + "login?redirecturl=" + encodeURIComponent(location.href), label: "Login"},{url: "javascript:authLogout()", label: "Logout"}];
 
 window.onload = function() {
 
@@ -14,6 +14,12 @@ window.onload = function() {
     qs = new URLSearchParams(location.search);
     userid = qs.get('userid');
     activityid = qs.get('activityid');
+    token = qs.get('token');
+    
+    if (token) {
+        Cookies.set('outsidely', token, { expires: 30 });
+        window.location.href = 'index.html';
+    }
     
     for (i in menu) {
         m = menu[i];
@@ -47,12 +53,16 @@ window.onload = function() {
 
 }
 
+function authLogout() {
+    Cookies.remove('outsidely');
+    window.location.href = 'index.html';
+}
+
 function loadActivities(url, buttonid, progressid, includepreview, callback) {
 
     if (typeof callback === "undefined") {
         callback = function() {};
     }
-    
 
     $('#' + buttonid).hide();
     $('#' + progressid).show();
