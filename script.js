@@ -27,17 +27,6 @@ window.onload = function() {
     authToken = 'Basic ' + Cookies.get('outsidely');
 
     $.ajax({
-        url: baseurl + 'read/notifications',
-        headers: {"Authorization": authToken},
-        success: function(json) {
-            count = json.notifications.length;
-            if (count > 0) {
-                $('#notificationcount').html('('+json.notifications.length+')');
-            }
-        }
-    });
-
-    $.ajax({
         url: baseurl + 'whoami',
         headers: {"Authorization": authToken},
         success: function(json) {
@@ -45,9 +34,20 @@ window.onload = function() {
         },
         error: function(xhr, status, error) {
             alert("Error getting user information");
+            location.replace(baseurl + "login?redirecturl=" + encodeURIComponent(location.href));
         },
         complete: function() {
-            init();
+            $.ajax({
+                url: baseurl + 'read/notifications',
+                headers: {"Authorization": authToken},
+                success: function(json) {
+                    count = json.notifications.length;
+                    if (count > 0) {
+                        $('#notificationcount').html('('+json.notifications.length+')');
+                    }
+                    init();
+                }
+            });
         }
     });
 
