@@ -1,11 +1,12 @@
-//var baseurl = 'http://localhost:7071/';
 var baseurl = 'https://outsidely.azurewebsites.net/';
+var baseurl = 'http://localhost:7071/';
 var authToken = '';
 var nexturl = baseurl + 'activities';
 var userid = '';
 var activityid = '';
 var whoami = '';
 var menu = [{url: "index.html", label: "Activity Feed"},{url: "upload.html", label: "Create Activity"},{url: "profile.html", label: "Your Profile"},{url: "notifications.html", label: 'Notifications <span id="notificationcount"></span>'},{url: baseurl + "login?redirecturl=" + encodeURIComponent(location.href), label: "Login"},{url: "javascript:authLogout()", label: "Logout"}];
+var gear = null;
 
 window.onload = function() {
 
@@ -96,20 +97,26 @@ function loadActivities(url, buttonid, progressid, includepreview, callback) {
                     
                 }
 
-                properties = ['visibilitytype','userid', 'name', 'description', 'activitytype', 'starttime', 'distance', 'time', 'ascent', 'speed', 'props', 'comments'];
+                properties = ['visibilitytype','userid', 'name', 'description', 'gear.name', 'gear.distance', 'activitytype', 'starttime', 'distance', 'time', 'ascent', 'speed', 'props', 'comments'];
                 for (i in properties) {
                     try {
-                        isarray = Array.isArray(a[properties[i]]);
-                        if (a[properties[i]].length > 0 || isarray) {
-                            var v;
-                            if (isarray) {
-                                v = a[properties[i]].length;
-                            }
-                            else {
-                                v = a[properties[i]];
-                            }
-                            $(div).append('<br/><b>' + properties[i] + ':</b> ' + v.toString());
+                        if (properties[i].includes('.')) {
+                            var parts = properties[i].split('.');
+                            v = a[parts[0]][parts[1]];
                         }
+                        else {
+                            isarray = Array.isArray(a[properties[i]]);
+                            if (a[properties[i]].length > 0 || isarray) {
+                                var v;
+                                if (isarray) {
+                                    v = a[properties[i]].length;
+                                }
+                                else {
+                                    v = a[properties[i]];
+                                }
+                            }
+                        }
+                        $(div).append('<br/><b>' + properties[i] + ':</b> ' + v.toString());
                     }
                     catch (e) {}
                 }
@@ -130,7 +137,11 @@ function loadActivities(url, buttonid, progressid, includepreview, callback) {
       });
 }
 
-function fillValidations(validationtype) {
+function fillValidations(validationtype, defaultvalue, callback) {
+    if (typeof callback === "undefined") {
+        callback = function() {};
+    }
+    $('#' + validationtype).empty();
     $.ajax({
         url: baseurl + 'validate/' + validationtype,
         headers: {"Authorization": authToken}, 
@@ -142,30 +153,47 @@ function fillValidations(validationtype) {
                 o.innerText = v.label;
                 document.getElementById(validationtype).appendChild(o);
             }
+            $('#' + validationtype).val(defaultvalue);
+            callback();
         }
       });
 }
 
-function fillGear(json) {
+function fillGear(activitytype, defaultvalue, callback) {
+
+    if (typeof callback === "undefined") {
+        callback = function() {};
+    }
 
     $('#gearid').empty();
 
-    o = document.createElement('option');
-    o.setAttribute('value', "");
-    o.innerText = "None";
-    document.getElementById('gearid').appendChild(o);
-
-    for (i in json.gear) {
-        if (json.gear[i].activitytype != $('#activitytype').val()) {
-            continue;
+    $.ajax({
+        type: 'GET',
+        url: baseurl + 'read/gear', 
+        headers: {"Authorization": authToken},
+        dataType: "json",
+        contentType: "application/json",
+        success: function(response) {
+            gear = response.gear;
+            o = document.createElement('option');
+            o.setAttribute('value', "");
+            o.innerText = "None";
+            document.getElementById('gearid').appendChild(o);
+            for (i in gear) {
+                if (gear[i].activitytype != activitytype) {
+                    continue;
+                }
+                g = gear[i]
+                o = document.createElement('option');
+                o.setAttribute('value', g.gearid);
+                o.innerText = g.name;
+                document.getElementById('gearid').appendChild(o);
+            }
+            $('#gearid').val(defaultvalue);
+            callback();
         }
-        g = json.gear[i]
-        o = document.createElement('option');
-        o.setAttribute('value', g.gearid);
-        o.innerText = g.name;
-        document.getElementById('gearid').appendChild(o);
-    }
-    
+    });
+
 }
 
 function apiDelete(type, id, id2) {

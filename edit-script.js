@@ -1,41 +1,35 @@
-var firstload = true;
+var activitydata = null;
 
 function init() {
 
-    fillValidations('activitytype');
-    fillValidations('visibilitytype');
+    $.ajax({
+        type: 'GET',
+        url: baseurl + 'activities/' + userid + '/' + activityid, 
+        headers: {"Authorization": authToken},
+        dataType: "json",
+        contentType: "application/json",
+        success: function(response){
+
+            activitydata = response.activities[0]
+
+            fillValidations('activitytype', activitydata.activitytype, function() {
+                fillValidations('visibilitytype', activitydata.visibilitytype, function() {
+                    fillGear(activitydata.activitytype, activitydata["gear"].gearid, function() {
+                        $('#name').val(activitydata.name);
+                        $('#description').val(activitydata.description);
+                    });
+                });
+            });
+
+        }
+    });
 
     $('#activitytype').change(function() {
-        $.ajax({
-            url: baseurl + 'read/gear',
-            headers: {"Authorization": authToken}, 
-            success: function(json) {
-                fillGear(json);
-                if (firstload) {
-                    firstload = false;
-                    $.ajax({
-                        type: 'GET',
-                        url: baseurl + 'activities/' + userid + '/' + activityid, 
-                        headers: {"Authorization": authToken},
-                        dataType: "json",
-                        contentType: "application/json",
-                        success: function(response){
-                            var a = response.activities[0]
-                            var namevalues = [];
-                            namevalues.push({name: 'activitytype', value: a.activitytype});
-                            namevalues.push({name: 'visibilitytype', value: a.visibilitytype});
-                            namevalues.push({name: 'name', value: a.name});
-                            namevalues.push({name: 'description', value: a.description});
-                            namevalues.push({name: 'gearid', value: a["gear"].gearid});
-                            preFill('form-edit', namevalues);
-                            $('#activitytype').change();
-                        }
-                    });
-                }
-            }
+        fillGear($('#activitytype').val(), activitydata["gear"].gearid, function() {
+            $('#name').val(activitydata.name);
+            $('#description').val(activitydata.description);
         });
     });
-    $('#activitytype').change();
 
     $('#edit-button').click(function() {
 
@@ -99,18 +93,4 @@ function init() {
         apiDelete('activity', activityid);
     });
 
-}
-
-function preFill(formid, namevalues) {
-    $('#' + formid + ' input ,#' + formid + ' select,#' + formid + ' textarea').each(function(){
-        if ($(this).attr('type') != 'button') {
-            n = $(this).attr('name');
-            for (var i = 0; i < namevalues.length; i++) {
-                if (n == namevalues[i]['name']) {
-                    $(this).val(namevalues[i]['value']);
-                    console.log(namevalues[i]['name'] + ' ' + namevalues[i]['value']);
-                }
-            }
-        }
-    });
 }
