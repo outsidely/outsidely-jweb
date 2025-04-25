@@ -36,7 +36,7 @@ function init() {
         });
     });
 
-    $('#back-button').click(function() { 
+    $('#activity-button').click(function() { 
         location.href = "activity.html?userid=" + userid + "&activityid=" + activityid;
     });
 
