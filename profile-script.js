@@ -1,5 +1,3 @@
-gear = null;
-
 function init() {
 
     $.ajax({
@@ -12,8 +10,26 @@ function init() {
             fillValidations('unitsystem', response.unitsystem, function() {
                 $('#firstname').val(response.firstname);
                 $('#lastname').val(response.lastname);
+                $('#email').val(response.email);
                 $('#unitsystem').val(response.unitsystem);
             });
+        }
+    });
+
+    $.ajax({
+        type: 'GET',
+        url: baseurl + 'read/gear', 
+        headers: {"Authorization": authToken},
+        dataType: "json",
+        contentType: "application/json",
+        success: function(response){
+            gear = response.gear;
+            html = '';
+            for (i in gear) {
+                g = gear[i]
+                html += '<li>' + g.name + ' - ' + g.distance + '</li>'
+            }
+            $('#gearlist').html(html);
         }
     });
 
