@@ -189,7 +189,9 @@ function fillGear(activitytype, defaultvalue, callback) {
                 o.innerText = g.name;
                 document.getElementById('gearid').appendChild(o);
             }
-            $('#gearid').val(defaultvalue);
+            if (defaultvalue) {
+                $('#gearid').val(defaultvalue);
+            }
             callback();
         }
     });

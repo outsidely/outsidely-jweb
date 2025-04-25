@@ -14,7 +14,12 @@ function init() {
 
             fillValidations('activitytype', activitydata.activitytype, function() {
                 fillValidations('visibilitytype', activitydata.visibilitytype, function() {
-                    fillGear(activitydata.activitytype, activitydata["gear"].gearid, function() {
+                    var gearid = null;
+                    try {
+                        gearid = activitydata["gear"].gearid;
+                    }
+                    catch (e) {}
+                    fillGear(activitydata.activitytype, gearid, function() {
                         $('#name').val(activitydata.name);
                         $('#description').val(activitydata.description);
                     });
@@ -29,6 +34,10 @@ function init() {
             $('#name').val(activitydata.name);
             $('#description').val(activitydata.description);
         });
+    });
+
+    $('#back-button').click(function() { 
+        location.href = "activity.html?userid=" + userid + "&activityid=" + activityid;
     });
 
     $('#edit-button').click(function() {
