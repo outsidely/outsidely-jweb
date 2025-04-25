@@ -2,7 +2,20 @@ gear = null;
 
 function init() {
 
-    fillValidations('unitsystem');
+    $.ajax({
+        type: 'GET',
+        url: baseurl + 'read/user', 
+        headers: {"Authorization": authToken},
+        dataType: "json",
+        contentType: "application/json",
+        success: function(response){
+            fillValidations('unitsystem', response.unitsystem, function() {
+                $('#firstname').val(response.firstname);
+                $('#lastname').val(response.lastname);
+                $('#unitsystem').val(response.unitsystem);
+            });
+        }
+    });
 
     $('#profile-button').click(function() {
 
