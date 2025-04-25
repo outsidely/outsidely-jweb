@@ -5,7 +5,7 @@ var nexturl = baseurl + 'activities';
 var userid = '';
 var activityid = '';
 var whoami = '';
-var menu = [{url: "index.html", label: "Activity Feed"},{url: "upload.html", label: "Create Activity"},{url: "profile.html", label: "Your Profile"},{url: "notifications.html", label: 'Notifications <span id="notificationcount"></span>'},{url: "javascript:authLogout()", label: "Logout"}];
+var menu = [{url: "index.html", label: "Activity Feed"},{url: "create.html", label: "Create Activity"},{url: "profile.html", label: "Your Profile"},{url: "notifications.html", label: 'Notifications <span id="notificationcount"></span>'},{url: "javascript:authLogout()", label: "Logout"}];
 var gear = null;
 
 window.onload = function() {
