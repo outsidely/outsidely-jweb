@@ -27,10 +27,14 @@ function init() {
             html = '';
             for (i in gear) {
                 g = gear[i]
-                html += '<li>' + g.name + ' - ' + g.distance + '</li>'
+                html += '<li>' + g.activitytype + ' - ' + g.geartype + ' - ' + g.name + ' - ' + g.distance + '</li>'
             }
             $('#gearlist').html(html);
         }
+    });
+
+    fillValidations('activitytype', null, function() {
+        $('#activitytype')[0].selectedIndex = 0;
     });
 
     $('#profile-button').click(function() {
@@ -63,6 +67,35 @@ function init() {
             },
             error: function(xhr, status, error) {
                 alert("Error updating profile" + xhr.responseText);
+            }
+        });
+    });
+
+    $('#gear-add-button').click(function() {
+        
+        var body = {};
+        $('#form-add-gear input, #form-add-gear select, #form-add-gear textarea').each(function(){
+            if (!$(this).attr('name').includes('ignore-')) {
+                n = $(this).attr('name');
+                v = $(this).val();
+                if (n != 'upload' && (v ?? 0) != 0)
+                {
+                    body[n] = v;
+                }
+            }
+        });
+
+        $.ajax({
+            url: baseurl + 'create/gear',
+            type: 'POST',
+            headers: {"Authorization": authToken}, 
+            data: JSON.stringify(body),
+            success: function(json) {
+                alert("Create successful");
+                location.reload();
+            },
+            error: function(xhr, status, error) {
+                alert("Error creating " + xhr.responseText);
             }
         });
     });

@@ -19,17 +19,17 @@
             Profile
         </h2>
         <form id="form-user" enctype="multipart/form-data">
-            <b>First Name: </b><input type="text" name="firstname" id="firstname" placeholder="First Name"></input>
+            <label>First Name</label><input type="text" name="firstname" id="firstname" placeholder="First Name"></input>
             <br/>
-            <b>Last Name: </b><input type="text" name="lastname" id="lastname" placeholder="Last Name"></input>
+            <label>Last Name</label><input type="text" name="lastname" id="lastname" placeholder="Last Name"></input>
             <br/>
-            <b>Last Name: </b><input type="text" name="email" id="email" placeholder="Email"></input>
+            <label>Last Name</label><input type="text" name="email" id="email" placeholder="Email"></input>
             <br/>
-            <b>Unit System: </b><select name="unitsystem" id="unitsystem"></select>
+            <label>Unit System</label><select name="unitsystem" id="unitsystem"></select>
             <br/>
-            <b>New Password: </b><input type="password" name="password" id="password" placeholder="New Password"></input>
+            <label>New Password</label><input type="password" name="password" id="password" placeholder="New Password"></input>
             <br/>
-            <b>Verify New Password: </b><input type="password" name="ignore-password" id="ignore-password" placeholder="Verify Password"></input>
+            <label>Verify New Password</label><input type="password" name="ignore-password" id="ignore-password" placeholder="Verify Password"></input>
             <br/>
             <input type="button" id="profile-button" name="ignore-profile-button" value="Edit Profile"></input>
         </form>
@@ -38,15 +38,13 @@
         </h2>
         <h3>Manage Gear</h3>
         <ul id="gearlist"></ul>
-        <!--
         <h3>Add Gear</h3>
-        <form id="form-gear" enctype="multipart/form-data">
-            <b>Name: </b><input type="text" name="gearname" id="gearname"></input>
+        <form id="form-add-gear" enctype="multipart/form-data">
+            <label>Name</label><input type="text" name="name" id="name"></input>
             <br/>
-            <b>Activity Type: </b><select name="activitytype" id="activitytype"></select>
+            <label>Activity Type</label><select name="activitytype" id="activitytype"></select>
             <br/>
-            <input type="button" id="gear-button" name="gear-button" value="Create Gear"></input>
+            <input type="button" id="gear-add-button" name="ignore-gear-add-button" value="Create Gear"></input>
         </form>
-        -->
     </body>
 </html>

@@ -1,5 +1,5 @@
 var baseurl = 'https://outsidely.azurewebsites.net/';
-//var baseurl = 'http://localhost:7071/'; 
+//var baseurl = 'http://localhost:7071/';
 var authToken = '';
 var nexturl = baseurl + 'activities';
 var userid = '';
@@ -97,7 +97,7 @@ function loadActivities(url, buttonid, progressid, includepreview, callback) {
                     
                 }
 
-                properties = ['visibilitytype','userid', 'name', 'description', 'gear.name', 'gear.distance', 'activitytype', 'starttime', 'distance', 'time', 'ascent', 'speed', 'props', 'comments'];
+                properties = ['visibilitytype', 'userid', 'name', 'description', 'gear.name', 'activitytype', 'starttime', 'distance', 'time', 'ascent', 'speed', 'props', 'comments'];
                 for (i in properties) {
                     try {
                         if (properties[i].includes('.')) {
@@ -176,7 +176,7 @@ function fillGear(activitytype, defaultvalue, callback) {
         success: function(response) {
             gear = response.gear;
             o = document.createElement('option');
-            o.setAttribute('value', "");
+            o.setAttribute('value', "none");
             o.innerText = "None";
             document.getElementById('gearid').appendChild(o);
             for (i in gear) {

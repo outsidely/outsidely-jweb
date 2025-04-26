@@ -41,6 +41,10 @@ textarea {
 .hide {
     display: none;
 }
+label {
+    font-weight: bold;
+    margin-right: 10px;
+}
 
 @media (max-width: 600px) { 
     body {
