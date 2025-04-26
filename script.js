@@ -1,5 +1,5 @@
 var baseurl = 'https://outsidely.azurewebsites.net/';
-//var baseurl = 'http://localhost:7071/';
+var baseurl = 'http://localhost:7071/';
 var authToken = '';
 var nexturl = baseurl + 'activities';
 var userid = '';
@@ -219,20 +219,19 @@ function apiDelete(type, id, id2) {
 }
 
 function apiAction(url, method, body) {
+    payload = '';
+    try {
+        payload = JSON.stringify(body);
+    }
+    catch (e) {
+        payload = JSON.stringify({});
+    }
     $.ajax({
         type: method,
         url: url, 
         headers: {"Authorization": authToken},
-        dataType: "json",
         contentType: "application/json",
-        data: function() { 
-            try {
-                return JSON.stringify(body);
-            }
-            catch (e) {
-                return JSON.stringify({});
-            }
-        } ,
+        data: payload,
         success: function(response){
             window.alert("API action successful");
             location.reload();

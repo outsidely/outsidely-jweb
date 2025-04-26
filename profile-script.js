@@ -27,7 +27,20 @@ function init() {
             html = '';
             for (i in gear) {
                 g = gear[i]
-                html += '<li>' + g.activitytype + ' - ' + g.geartype + ' - ' + g.name + ' - ' + g.distance + '</li>'
+                var activeselected = '';
+                var retiredselected = '';
+                if (g.geartype == 'active') {
+                    activeselected = 'selected="selected"';
+                }
+                else {
+                    retiredselected = 'selected="selected"';
+                }
+                htmlcontrols = '<select gearid="' + g.gearid + '">'
+                    + '<option value="active" ' + activeselected + '>Active</option>'
+                    + '<option value="retired" ' + retiredselected + '>Retired</option>'
+                    + '</select>'
+                    + '<input type="button" gearid="' + g.gearid + '" value="Update" onclick="updateGear(\'' + g.gearid + '\')"></input>';
+                html += '<li>' + g.activitytype + ' - ' + g.geartype + ' - ' +'<input gearid="' + g.gearid + '" type="text" name="name" value="' + g.name + '"></input>' + ' - ' + g.distance + ' - ' + htmlcontrols + '</li>'
             }
             $('#gearlist').html(html);
         }
@@ -100,4 +113,9 @@ function init() {
         });
     });
     
+}
+
+function updateGear(gearid) {
+    var body = {name:$('input[name="name"][gearid="' + gearid + '"]').val(),geartype:$('select[gearid="' + gearid + '"]').val()};
+    apiAction(baseurl + 'update/gear/' + gearid, 'PATCH', body);
 }
