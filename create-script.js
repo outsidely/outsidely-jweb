@@ -1,28 +1,27 @@
-gear = null;
-
 function init() {
 
     $('#progress').hide();
 
-    fillValidations('visibilitytype');
-    fillValidations('activitytype');
-
-    $('#activitytype').change(function() {
-        if (gear == null) {
-            $.ajax({
-                url: baseurl + 'read/gear',
-                headers: {"Authorization": authToken}, 
-                success: function(json) {
-                    gear = json;
-                    fillGear(gear);
+    fillValidations('visibilitytype', "connections", function() {
+        fillValidations('activitytype', "ride", function() {
+            $('#activitytype').change(function() {
+                if (gear == null) {
+                    $.ajax({
+                        url: baseurl + 'read/gear',
+                        headers: {"Authorization": authToken}, 
+                        success: function(json) {
+                            gear = json;
+                            fillGear($('#activitytype').val());
+                        }
+                    });
+                }
+                else {
+                    fillGear($('#activitytype').val());
                 }
             });
-        }
-        else {
-            fillGear(gear);
-        }
+            $('#activitytype').change();
+        });
     });
-    $('#activitytype').change();
 
     $('#upload-button').on('click', function() {
 
