@@ -11,12 +11,12 @@ function init() {
                         headers: {"Authorization": authToken}, 
                         success: function(json) {
                             gear = json;
-                            fillGear($('#activitytype').val());
+                            fillGear($('#activitytype').val(), null, null, true);
                         }
                     });
                 }
                 else {
-                    fillGear($('#activitytype').val());
+                    fillGear($('#activitytype').val(), null, null, true);
                 }
             });
             $('#activitytype').change();
@@ -50,7 +50,7 @@ function init() {
                 $('#upload-button').show();
                 $('#progress').hide();
                 alert("Activity uploaded successfully");
-                window.location.href = 'upload.html';
+                location.reload();
             },
             error: function(xhr, status, error) {
                 alert("Error uploading activity");

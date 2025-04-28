@@ -7,6 +7,7 @@ var activityid = '';
 var whoami = '';
 var menu = [{url: "index.html", label: "Activity Feed"},{url: "create.html", label: "Create Activity"},{url: "profile.html", label: "Your Profile"},{url: "notifications.html", label: 'Notifications <span id="notificationcount"></span>'},{url: "javascript:authLogout()", label: "Logout"}];
 var gear = null;
+var loadingactivities = false;
 
 window.onload = function() {
 
@@ -17,7 +18,7 @@ window.onload = function() {
     
     if (token) {
         Cookies.set('outsidely', token, { expires: 30 });
-        window.location.href = 'index.html';
+        location.href = 'index.html';
     }
     
     for (i in menu) {
@@ -45,7 +46,7 @@ window.onload = function() {
             });
         },
         error: function(xhr, status, error) {
-            alert("Error getting user information");
+            //alert("Error getting user information");
             location.replace(baseurl + "login?redirecturl=" + encodeURIComponent(location.href));
         }
     });
@@ -54,17 +55,21 @@ window.onload = function() {
 
 function authLogout() {
     Cookies.remove('outsidely');
-    window.location.href = 'index.html';
+    location.reload();
 }
 
-function loadActivities(url, buttonid, progressid, includepreview, callback) {
+function loadActivities(url, includepreview, callback) {
+
+    if (loadingactivities) {
+        return;
+    }
+    loadingactivities = true;
 
     if (typeof callback === "undefined") {
         callback = function() {};
     }
 
-    $('#' + buttonid).hide();
-    $('#' + progressid).show();
+    $('#progress').show();
 
     $.ajax({
         url: url, 
@@ -84,12 +89,11 @@ function loadActivities(url, buttonid, progressid, includepreview, callback) {
                     link.setAttribute('href', 'activity.html?userid=' + a.userid + '&activityid=' + a.activityid);
     
                     img = document.createElement('img');
-                    if (a.media.length > 0) {
+                    img.setAttribute('src', baseurl + a.previewurl);
+                    try {
                         img.setAttribute('src', baseurl + a.media[0].mediapreviewurl);
                     }
-                    else {
-                        img.setAttribute('src', baseurl + a.previewurl);
-                    }
+                    catch (e) {}
                     img.setAttribute('class', 'fitpreview');
                     link.appendChild(img);
     
@@ -128,8 +132,9 @@ function loadActivities(url, buttonid, progressid, includepreview, callback) {
             $('#activities').append(div);
             nexturl = baseurl + json.nexturl;
 
-            $('#' + buttonid).show();
-            $('#' + progressid).hide();
+            $('#progress').hide();
+
+            loadingactivities = false;
 
             callback(json);
 
@@ -159,9 +164,9 @@ function fillValidations(validationtype, defaultvalue, callback) {
       });
 }
 
-function fillGear(activitytype, defaultvalue, callback) {
+function fillGear(activitytype, defaultvalue, callback, activeonly = false) {
 
-    if (typeof callback === "undefined") {
+    if (!callback) {
         callback = function() {};
     }
 
@@ -180,6 +185,9 @@ function fillGear(activitytype, defaultvalue, callback) {
             o.innerText = "None";
             document.getElementById('gearid').appendChild(o);
             for (i in gear) {
+                if (gear[i].geartype != 'active' && activeonly) {
+                    continue;
+                }
                 if (gear[i].activitytype != activitytype) {
                     continue;
                 }
