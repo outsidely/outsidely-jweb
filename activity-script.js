@@ -42,7 +42,7 @@ function init() {
     });
   });
 
-  loadActivities(baseurl + 'activities/' + userid + '/' + activityid, 'none', 'none', false, activitiesLoaded);
+  loadActivities(baseurl + 'activities/' + userid + '/' + activityid, false, activitiesLoaded);
   initMap();
   initChart();
 
