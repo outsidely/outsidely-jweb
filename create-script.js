@@ -47,13 +47,15 @@ function init() {
             processData: false,
             contentType: false,
             success: function(json) {
-                $('#upload-button').show();
-                $('#progress').hide();
                 alert("Activity uploaded successfully");
                 location.reload();
             },
             error: function(xhr, status, error) {
-                alert("Error uploading activity");
+                alert("Error uploading activity:" + xhr.responseText);
+            },
+            complete: function() {
+                $('#upload-button').show();
+                $('#progress').hide();
             }
         });
 
