@@ -40,7 +40,7 @@ function init() {
                     + '<option value="retired" ' + retiredselected + '>Retired</option>'
                     + '</select>'
                     + '<input type="button" gearid="' + g.gearid + '" value="Update" onclick="updateGear(\'' + g.gearid + '\')"></input>';
-                html += '<li>' + g.activitytype + ' - ' + g.geartype + ' - ' +'<input gearid="' + g.gearid + '" type="text" name="name" value="' + g.name + '"></input>' + ' - ' + g.distance + ' - ' + htmlcontrols + '</li>'
+                html += '<li>' + g.activitytype + ' - ' +'<input gearid="' + g.gearid + '" type="text" name="name" value="' + g.name + '"></input>' + ' - ' + g.distance + ' - ' + htmlcontrols + '</li>'
             }
             $('#gearlist').html(html);
         }
