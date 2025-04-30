@@ -40,7 +40,7 @@ function init() {
                 + '<option value="retired" ' + retiredselected + '>Retired</option>'
                 + '</select>'
                 + '<input type="button" gearid="' + g.gearid + '" value="Update" onclick="updateGear(\'' + g.gearid + '\')" class="gear-update"></input></span>';
-                html += '<li><span class="gear-activity">' + g.activitytype + '</span> ' +'<input gearid="' + g.gearid + '" type="text" name="name" class="gear-name" value="' + g.name + '"></input>' + '<span class="gear-distance">' + g.distance + '</span> ' + htmlcontrols + '</li>'            }
+                html += '<li><span class="gear-activity">' + g.activitytype + '</span> ' + '<span class="gear-distance">(' + g.distance + ')</span><br>' +'<input gearid="' + g.gearid + '" type="text" name="name" class="gear-name" value="' + g.name + '"></input>'  + htmlcontrols + '<br><br></li>'            }
             $('#gearlist').html(html);
         }
     });

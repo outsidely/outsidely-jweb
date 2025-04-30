@@ -48,10 +48,10 @@ label {
 
 @media (max-width: 600px) { 
     body {
-        font-size: x-large;
+        font-size: large;
     }
     input,textarea,select,button {
-        font-size: x-large;
+        font-size: large;
     }
 } 
 
@@ -75,6 +75,12 @@ label {
 #form-user label {
     display: inline-block;
     font-weight: bold;
+    width: 200px;
+}
+#form-user input {
+    width: 200px;
+}
+#form-user select {
     width: 200px;
 }
 
@@ -120,7 +126,7 @@ label {
     padding: 10px;
 }
 #gearlist span.gear-activity {
-    display: inline-block;
+    display:inline;
     width: 50px;
     font-weight:bold;
 
