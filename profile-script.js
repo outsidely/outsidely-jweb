@@ -35,13 +35,12 @@ function init() {
                 else {
                     retiredselected = 'selected="selected"';
                 }
-                htmlcontrols = '<select gearid="' + g.gearid + '">'
-                    + '<option value="active" ' + activeselected + '>Active</option>'
-                    + '<option value="retired" ' + retiredselected + '>Retired</option>'
-                    + '</select>'
-                    + '<input type="button" gearid="' + g.gearid + '" value="Update" onclick="updateGear(\'' + g.gearid + '\')"></input>';
-                html += '<li>' + g.activitytype + ' - ' +'<input gearid="' + g.gearid + '" type="text" name="name" value="' + g.name + '"></input>' + ' - ' + g.distance + ' - ' + htmlcontrols + '</li>'
-            }
+                htmlcontrols = '<span class="gear-controls"><select gearid="' + g.gearid + '">'
+                + '<option value="active" ' + activeselected + '>Active</option>'
+                + '<option value="retired" ' + retiredselected + '>Retired</option>'
+                + '</select>'
+                + '<input type="button" gearid="' + g.gearid + '" value="Update" onclick="updateGear(\'' + g.gearid + '\')" class="gear-update"></input></span>';
+                html += '<li><span class="gear-activity">' + g.activitytype + '</span> ' +'<input gearid="' + g.gearid + '" type="text" name="name" class="gear-name" value="' + g.name + '"></input>' + '<span class="gear-distance">' + g.distance + '</span> ' + htmlcontrols + '</li>'            }
             $('#gearlist').html(html);
         }
     });
