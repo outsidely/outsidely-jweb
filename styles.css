@@ -57,6 +57,7 @@ label {
 
 #upload-form {
     border: 1px solid #000;
+    padding: 10px;
 }
 #upload-form label {
     display: inline-block;
@@ -69,6 +70,7 @@ label {
 
 #form-user {
     border: 1px solid #000;
+    padding: 10px;
 }
 #form-user label {
     display: inline-block;
@@ -78,6 +80,7 @@ label {
 
 #form-add-gear {
     border: 1px solid #000;
+    padding: 10px;
 }
 #form-add-gear label {
     display: inline-block;
@@ -98,6 +101,7 @@ label {
 
 #form-edit {
     border: 1px solid #000;
+    padding: 10px;
 }
 #form-edit label {
     display: inline-block;
@@ -110,6 +114,10 @@ label {
 #form-edit #description {
     width: 320px;
     height: 120px;
+}
+
+#gearlist {
+    padding: 10px;
 }
 #gearlist span.gear-activity {
     display: inline-block;
