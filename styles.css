@@ -54,3 +54,60 @@ label {
         font-size: x-large;
     }
 } 
+
+#upload-form {
+    border: 1px solid #000;
+}
+#upload-form label {
+    display: inline-block;
+    font-weight: bold;
+    width: 125px;
+}
+#upload-form #name {
+    width: 320;
+}
+
+#form-user {
+    border: 1px solid #000;
+}
+#form-user label {
+    display: inline-block;
+    font-weight: bold;
+    width: 200px;
+}
+
+#form-add-gear {
+    border: 1px solid #000;
+}
+#form-add-gear label {
+    display: inline-block;
+    font-weight: bold;
+    width: 125px;
+}
+
+#gearlist {
+    border: 1px solid #000;
+    list-style: none;
+    padding-left: 0;
+}
+
+#media {
+    list-style: none;
+    padding-left: 0;
+}
+
+#form-edit {
+    border: 1px solid #000;
+}
+#form-edit label {
+    display: inline-block;
+    font-weight: bold;
+    width: 125px;
+}
+#form-edit #name {
+    width: 320px;
+}
+#form-edit #description {
+    width: 320px;
+    height: 120px;
+}
