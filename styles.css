@@ -111,3 +111,29 @@ label {
     width: 320px;
     height: 120px;
 }
+#gearlist span.gear-activity {
+    display: inline-block;
+    width: 50px;
+    font-weight:bold;
+
+}
+#gearlist input.gear-name {
+    width: 100px;
+}
+#gearlist span.gear-distance {
+    display: inline-block;
+    width: 75px;
+    padding-left: .5em;
+    text-align: right;
+    font-size: smaller;
+}
+#gearlist input.gear-update {
+    margin-left: .5em;
+}
+
+span.activity-prop {
+    display: inline-block;
+    width: 125px;
+    font-weight:bold;
+    text-transform: capitalize;
+}
