@@ -151,3 +151,13 @@ span.activity-prop {
     font-weight:bold;
     text-transform: capitalize;
 }
+
+span.commentUserid {
+    display: inline-block;
+    font-style: italic;
+}
+span.commentDate {
+    display: inline-block;
+    font-size: smaller;
+    color: #333;
+}
