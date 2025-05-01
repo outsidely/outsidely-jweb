@@ -72,9 +72,9 @@ function activitiesLoaded(json) {
   for (i in c){
     var deletehtml = '';
     if (c[i].userid == whoami) {
-      deletehtml = ' <input type="button" onclick="apiDelete(\'comment\',\'' + json.activities[0].activityid + '\',\'' + c[i].commentid + '\')" value="Delete"></input>';
+      deletehtml = ' <input type="button" onclick="apiDelete(\'comment\',\'' + json.activities[0].activityid + '\',\'' + c[i].commentid + '\')" value="Delete" class="commentDelete"></input>';
     }
-    $('#comments').append('<li>' + c[i].comment + ' - ' + c[i].userid + ' - ' + c[i].createtime + deletehtml + '</li>');
+    $('#comments').append('<li><span class="commentText">' + c[i].comment + '</span> - <span class="commentUserid">' + c[i].userid + '</span> - <span class="commentDate">(' + c[i].createtime + ')</span>' + deletehtml + '</li>');
   }
 
 }
