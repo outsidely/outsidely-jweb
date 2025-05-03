@@ -11,6 +11,8 @@ var loadingactivities = false;
 
 window.onload = function() {
 
+    applyContent();
+
     qs = new URLSearchParams(location.search);
     userid = qs.get('userid');
     activityid = qs.get('activityid');
@@ -51,6 +53,12 @@ window.onload = function() {
         }
     });
 
+}
+
+function applyContent() {
+    for (c in contents) {
+        $('#' + c).html(contents[c]);
+    }
 }
 
 function authLogout() {
