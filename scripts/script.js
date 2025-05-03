@@ -109,7 +109,9 @@ function loadActivities(url, includepreview, callback) {
                     
                 }
 
-                properties = ['visibilitytype', 'userid', 'name', 'description', 'gear.name', 'activitytype', 'starttime', 'distance', 'time', 'ascent', 'speed', 'props', 'comments'];
+                $(div).append('<div class="activity-title"><img class="activity-icon" src="assets/' + a.activitytype.toLowerCase() + '.png"/><span class="activity-text">'+a["name"]+'</span></div>');
+
+                properties = ['visibilitytype', 'userid', 'description', 'gear.name', 'activitytype', 'starttime', 'distance', 'time', 'ascent', 'speed', 'props', 'comments'];
                 for (i in properties) {
                     try {
                         if (properties[i].includes('.')) {

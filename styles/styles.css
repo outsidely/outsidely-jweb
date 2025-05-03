@@ -198,3 +198,17 @@ span.commentDate {
 .logo-image {
     width: 75px;
 }
+
+#activity-title {
+    align-items: center;
+    display: flex;
+    margin-top: 10px;
+}
+.activity-icon {
+    width: 30px;
+    margin-right: 5px;
+    vertical-align: middle;
+}
+.activity-text {
+    font-size: larger;
+}
