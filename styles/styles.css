@@ -150,8 +150,13 @@ span.activity-prop {
     width: 125px;
     font-weight:bold;
     text-transform: capitalize;
+    vertical-align: top;
 }
-
+span.activity-value {
+    display: inline-block;
+    width: 200px;
+    overflow-wrap: break-word;
+}
 span.commentUserid {
     display: inline-block;
     font-style: italic;

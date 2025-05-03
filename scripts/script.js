@@ -130,7 +130,7 @@ function loadActivities(url, includepreview, callback) {
                                 }
                             }
                         }
-                        $(div).append('<br/><span class="activity-prop">' + properties[i] + '</span>: ' + '<span class="activity-value">' + v.toString()+ '</span>');
+                        $(div).append('<br/><span class="activity-prop">' + properties[i] + '</span><span class="activity-value">' + v.toString()+ '</span>');
                     }
                     catch (e) {}
                 }
