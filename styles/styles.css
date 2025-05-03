@@ -13,6 +13,8 @@ a:hover {
     width: 200px;
     height: 200px;
     object-fit: cover;
+    border-radius: 5px;
+    border: 1px solid #000;
 }
 
 #map {
@@ -204,7 +206,7 @@ span.commentDate {
     width: 75px;
 }
 
-#activity-title {
+.activity-title {
     align-items: center;
     display: flex;
     margin-top: 10px;
@@ -216,4 +218,14 @@ span.commentDate {
 }
 .activity-text {
     font-size: larger;
+    font-weight: bold;
+}
+
+.activity-item {
+    border: 1px solid #000000;
+    padding: 10px;
+    margin: 10px auto;;
+    border-radius: 10px;
+    max-width: 800px;
+    background-color: whitesmoke;
 }

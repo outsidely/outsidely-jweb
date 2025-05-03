@@ -88,8 +88,9 @@ function loadActivities(url, includepreview, callback) {
                 a = json.activities[i]
 
                 div = document.createElement('div');
+                div.setAttribute('class', 'activity-item');
 
-                div.appendChild(document.createElement('hr'));
+                //div.appendChild(document.createElement('hr'));
 
                 if (includepreview) {
 
@@ -109,7 +110,8 @@ function loadActivities(url, includepreview, callback) {
                     
                 }
 
-                $(div).append('<div class="activity-title"><img class="activity-icon" src="assets/' + a.activitytype.toLowerCase() + '.png"/><span class="activity-text">'+a["name"]+'</span></div>');
+                // icons from: https://fonts.google.com/icons size 50 color #000000
+                $(div).append('<div class="activity-title"><img class="activity-icon" src="assets/' + a.activitytype + '.png"/><span class="activity-text">'+a["name"]+'</span></div>');
 
                 properties = ['visibilitytype', 'userid', 'description', 'gear.name', 'activitytype', 'starttime', 'distance', 'time', 'ascent', 'speed', 'props', 'comments'];
                 for (i in properties) {
