@@ -5,7 +5,7 @@ var nexturl = baseurl + 'activities';
 var userid = '';
 var activityid = '';
 var whoami = '';
-var menu = [{url: "index.html", label: "Feed"},{url: "create.html", label: "Upload"},{url: "javascript:void(0)", label: "Friends"},{url: "notifications.html", label: 'Msgs <span id="notificationcount"></span>'}];
+var menu = [{url: "index.html", label: "Feed"},{url: "create.html", label: "Upload"},{url: "connections.html", label: "Friends"},{url: "notifications.html", label: 'Msgs <span id="notificationcount"></span>'}];
 var gear = null;
 var loadingactivities = false;
 
