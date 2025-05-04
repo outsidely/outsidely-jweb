@@ -66,6 +66,10 @@ function authLogout() {
     location.reload();
 }
 
+function doNothing() {
+    
+}
+
 function loadActivities(url, includepreview, callback) {
 
     if (loadingactivities) {
@@ -87,12 +91,26 @@ function loadActivities(url, includepreview, callback) {
 
                 a = json.activities[i]
 
+                let haspreview = true;
+                if (!a.previewurl) {
+                    haspreview = false;
+                }
+
+                let hasmedia = false;
+                try {
+                    if (a.media.length > 0)
+                    {
+                        hasmedia = true;
+                    }
+                }
+                catch (e) {}
+
                 div = document.createElement('div');
                 div.setAttribute('class', 'activity-item');
 
-                //div.appendChild(document.createElement('hr'));
+                $(div).append('<div class="activity-userid"><a href="javascript:doNothing()">@' + a.userid + '</a></div>');
 
-                if (includepreview) {
+                if (includepreview && (haspreview || hasmedia)) {
 
                     link = document.createElement('a');
                     link.setAttribute('href', 'activity.html?userid=' + a.userid + '&activityid=' + a.activityid);
@@ -111,9 +129,9 @@ function loadActivities(url, includepreview, callback) {
                 }
 
                 // icons from: https://fonts.google.com/icons size 50 color #000000
-                $(div).append('<div class="activity-title"><img class="activity-icon" src="assets/' + a.activitytype + '.png"/><span class="activity-text">'+a["name"]+'</span></div>');
+                $(div).append('<div class="activity-title"><a href="'+'activity.html?userid=' + a.userid + '&activityid=' + a.activityid+'"><img class="activity-icon" src="assets/' + a.activitytype + '.png"/><span class="activity-text">'+a["name"]+'</a></span></div>');
 
-                properties = ['visibilitytype', 'userid', 'description', 'gear.name', 'activitytype', 'starttime', 'distance', 'time', 'ascent', 'speed', 'props', 'comments'];
+                properties = ['visibilitytype', 'description', 'gear.name', 'activitytype', 'starttime', 'distance', 'time', 'ascent', 'speed', 'props', 'comments'];
                 for (i in properties) {
                     try {
                         if (properties[i].includes('.')) {

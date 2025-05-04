@@ -5,6 +5,9 @@
         </title>
         <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+        <script src="https://cdn.jsdelivr.net/npm/luxon@3.6.1/build/global/luxon.min.js"></script>
         <script src="scripts/content.js"></script>
         <script src="scripts/script.js"></script>
         <script src="scripts/create.js"></script>
@@ -16,8 +19,27 @@
         <ul id="menu" class="menu"></ul>
         <h2>Create Activity</h2>
         <form id="upload-form" enctype="multipart/form-data">
-            <label>GPX File</label>
-            <input type="file" name="upload" id="upload"></input>
+            <label>Source Type</label>
+            <input type="radio" name="gps" id="gps1" value="1" checked>File</input>
+            <input type="radio" name="gps" id="gps0" value="0">Manual</input>
+            <br/>
+            <span id="show-gps-0" class="hide">
+                <label>Distance</label>
+                <input type="number" name="distance" id="distance" placeholder="Meters" min="0" max="500000" step="10"></input>
+                <br/>
+                <label>Ascent</label>
+                <input type="number" name="ascent" id="ascent" placeholder="Meters" min="0" max="500000" step="10"></input>
+                <br/>
+                <label>Time</label>
+                <input type="number" name="time" id="time" placeholder="Seconds" min="0" max="604800" step="10"></input>
+                <br/>
+                <label>Start Time</label>
+                <input type="text" name="starttime" id="starttime" placeholder="Select Date & Time"></input>
+            </span>
+            <span id="show-gps-1">
+                <label>GPX File</label>
+                <input type="file" name="upload" id="upload"></input>
+            </span>
             <br/>
             <label>Visibility</label>
             <select name="visibilitytype" id="visibilitytype"></select>
@@ -33,6 +55,6 @@
             <textarea name="description" id="description" placeholder="Description"></textarea>
         </form>
         <input type="button" value="Upload" id="upload-button"></input>
-        <div id="progress"><img src="assets/Circles-menu-3.gif"></img></div>
+        <div id="progress" class="hide"><img src="assets/Circles-menu-3.gif"></img></div>
     </body>
 </html>

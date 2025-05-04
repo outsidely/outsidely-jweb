@@ -23,27 +23,72 @@ function init() {
         });
     });
 
+    $('input[name="gps"]').change(function() {
+        console.log(this.value);
+        if (this.value == '0') {
+            $('#show-gps-0').show();
+            $('#show-gps-1').hide();
+        } else {
+            $('#show-gps-0').hide();
+            $('#show-gps-1').show();
+        }
+    });
+
+    $("#starttime").flatpickr({enableTime: true});
+
     $('#upload-button').on('click', function() {
 
         $('#upload-button').hide();
         $('#progress').show();
 
         var formData = new FormData();
-        formData.append('upload', document.getElementById('upload').files[0]);
+        var gps = $('input[name="gps"]:checked').val();
+        var removeNames = [];
+        var postUrl = baseurl + 'upload/activity';
+        var postBody = {};
+        var processData = null;
+        var contentType = null;
+        var data = null;
+        if (gps == '1') {
+            removeNames = ['distance', 'ascent', 'time', 'starttime', 'gps', 'undefined'];
+            formData.append('upload', document.getElementById('upload').files[0]);
+            processData = false;
+            contentType = false;
+        }
+        else {
+            removeNames = ['gps','undefined'];
+            postUrl = baseurl + 'create/activity';
+            contentType = 'application/json';
+        }
         $('#upload-form input, select, textarea').each(function(){
-            n = $(this).attr('name');
-            v = $(this).val();
-            if (n != 'upload' && (v ?? 0) != 0)
-            {
+            let n = $(this).attr('name');
+            let v = $(this).val();
+            if (n != 'upload' && (v ?? 0) != 0){
+                if (n == 'starttime') {
+                    v = flatpickr2UTC('starttime');
+                }
                 formData.append(n, v);
+                postBody[n] = v;
             }
         });
 
+        for (rn in removeNames) {
+            formData.delete(removeNames[rn]);
+            delete postBody[removeNames[rn]];
+        }
+
+        if (gps == '1') {
+            data = formData;
+        }
+        else {
+            data = JSON.stringify(postBody);
+        }
+
         $.ajax({
-            url: baseurl + 'upload/activity',
+            url: postUrl,
             type: 'POST',
             headers: {"Authorization": authToken}, 
-            data: formData,
+            data: data,
             processData: false,
             contentType: false,
             success: function(json) {
@@ -61,4 +106,8 @@ function init() {
 
     });
     
+}
+
+function flatpickr2UTC(id) {
+    return luxon.DateTime.fromISO($('#' + id).val().replace(' ','T')).toUTC().toString();
 }
