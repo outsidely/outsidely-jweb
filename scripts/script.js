@@ -74,10 +74,6 @@ function authLogout() {
     location.reload();
 }
 
-function doNothing() {
-    
-}
-
 function loadActivities(url, includepreview, callback) {
 
     if (loadingactivities) {
@@ -116,7 +112,11 @@ function loadActivities(url, includepreview, callback) {
                 div = document.createElement('div');
                 div.setAttribute('class', 'activity-item');
 
-                $(div).append('<div class="activity-userid"><a href="javascript:doNothing()">@' + a.userid + '</a></div>');
+                private_html = '';
+                if (a["visibilitytype"] == 'private') {
+                    private_html = '<img class="icon-small" title="This activity is private only to you" src="assets/lock.png"/>';
+                }
+                $(div).append('<div class="activity-userid">' + private_html + '<a href="javascript:void(0)">@' + a.userid + '</a></div>');
 
                 if (includepreview && (haspreview || hasmedia)) {
 
@@ -139,7 +139,7 @@ function loadActivities(url, includepreview, callback) {
                 // icons from: https://fonts.google.com/icons size 50 color #000000
                 $(div).append('<div class="activity-title"><a href="'+'activity.html?userid=' + a.userid + '&activityid=' + a.activityid+'"><img class="activity-icon" src="assets/' + a.activitytype + '.png"/><span class="activity-text">'+a["name"]+'</a></span></div>');
 
-                properties = ['visibilitytype', 'description', 'gear.name', 'activitytype', 'starttime', 'distance', 'time', 'ascent', 'speed', 'props', 'comments'];
+                properties = ['description', 'gear.name', 'activitytype', 'starttime', 'distance', 'time', 'ascent', 'speed', 'props', 'comments'];
                 for (i in properties) {
                     try {
                         if (properties[i].includes('.')) {

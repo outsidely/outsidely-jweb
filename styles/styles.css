@@ -295,3 +295,8 @@ text-align: center;
   display: block;
 }
         
+.icon-small {
+    width: 20px;
+    margin-right: 5px;
+    vertical-align: middle;
+}
