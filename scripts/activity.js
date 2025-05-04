@@ -43,12 +43,24 @@ function init() {
   });
 
   loadActivities(baseurl + 'activities/' + userid + '/' + activityid, false, activitiesLoaded);
-  initMap();
-  initChart();
 
 }
 
 function activitiesLoaded(json) {
+
+  hasGps = true;
+  try {
+    if (json.activities[0]["gps"] != "1") {
+      hasGps = false;
+    }
+  }
+  catch (e) {}
+  if (hasGps) {
+    $('#map').show();
+    $('#chartdiv').show();
+    initMap();
+    initChart();
+  }
 
   m = json.activities[0].media;
   for (i in m){
