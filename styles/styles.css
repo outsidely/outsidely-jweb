@@ -211,6 +211,7 @@ span.commentDate {
     align-items: center;
     display: flex;
     margin-top: 10px;
+    margin-bottom: 10px;
 }
 .activity-icon {
     width: 30px;
@@ -278,6 +279,8 @@ li.dropdown {
     min-width: 140px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
 }
 
 .dropdown-content a  {
@@ -286,6 +289,8 @@ padding: 0px 0px;
 text-decoration: none;
 display: block;
 text-align: center;
+border-bottom-left-radius: 5px;
+border-bottom-right-radius: 5px;
 }
 
 .dropdown-content a:hover {

@@ -22,19 +22,6 @@ window.onload = function() {
         Cookies.set('outsidely', token, { expires: 30 });
         location.href = 'index.html';
     }
-    
-    var submenu= '';
-    submenu += '<div class="dropdown-content">';
-    submenu += '<a href="profile.html">Profile</a>';
-    submenu += '<a href="javascript:void(0)">Invites</a>';
-    submenu += '<a href="javascript:authLogout()">Logout</a>'
-    submenu += '</div>';
-
-    for (i in menu) {
-        m = menu[i];
-        $('#menu').append('<li><a href="' + m.url + '">' + m.label + '</a></li>');
-    }
-    $('#menu').append('<li class="dropdown"><a href="javascript:void(0)" class="dropbtn">More ...</a>' + submenu + '</li>');
 
     authToken = 'Basic ' + Cookies.get('outsidely');
 
@@ -64,9 +51,24 @@ window.onload = function() {
 }
 
 function applyContent() {
+    
     for (c in contents) {
         $('#' + c).html(contents[c]);
     }
+
+    var submenu= '';
+    submenu += '<div class="dropdown-content">';
+    submenu += '<a href="profile.html">Profile</a>';
+    submenu += '<a href="javascript:void(0)">Invites</a>';
+    submenu += '<a href="javascript:authLogout()">Logout</a>'
+    submenu += '</div>';
+
+    for (i in menu) {
+        m = menu[i];
+        $('#menu').append('<li><a href="' + m.url + '">' + m.label + '</a></li>');
+    }
+    $('#menu').append('<li class="dropdown"><a href="javascript:void(0)" class="dropbtn">More ...</a>' + submenu + '</li>');
+
 }
 
 function authLogout() {
@@ -158,7 +160,7 @@ function loadActivities(url, includepreview, callback) {
                                 }
                             }
                         }
-                        $(div).append('<br/><span class="activity-prop">' + properties[i] + '</span><span class="activity-value">' + v.toString()+ '</span>');
+                        $(div).append('<div class="activity-property-row"><span class="activity-prop">' + properties[i] + '</span><span class="activity-value">' + v.toString()+ '</span></div>');
                     }
                     catch (e) {}
                 }
@@ -237,6 +239,9 @@ function fillGear(activitytype, defaultvalue, callback, activeonly = false) {
             }
             if (defaultvalue) {
                 $('#gearid').val(defaultvalue);
+            }
+            if (!$('#gearid').val()) {
+                $('#gearid').val('none');
             }
             callback();
         }
