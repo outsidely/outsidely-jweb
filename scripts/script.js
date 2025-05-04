@@ -5,7 +5,7 @@ var nexturl = baseurl + 'activities';
 var userid = '';
 var activityid = '';
 var whoami = '';
-var menu = [{url: "index.html", label: "Feed"},{url: "create.html", label: "Upload"},{url: "profile.html", label: "Profile"},{url: "notifications.html", label: 'Msgs <span id="notificationcount"></span>'},{url: "javascript:authLogout()", label: "Logout"}];
+var menu = [{url: "index.html", label: "Feed"},{url: "create.html", label: "Upload"},{url: "javascript:void(0)", label: "Friends"},{url: "notifications.html", label: 'Msgs <span id="notificationcount"></span>'}];
 var gear = null;
 var loadingactivities = false;
 
@@ -23,10 +23,18 @@ window.onload = function() {
         location.href = 'index.html';
     }
     
+    var submenu= '';
+    submenu = '<div class="dropdown-content">'
+    submenu += '<a href="profile.html">Profile</a>';
+    submenu += '<a href="javascript:void(0)">Invites</a>';
+    submenu += '<a href="javascript:authLogout()">Logout</a>'
+    submenu += '</div>';
+
     for (i in menu) {
         m = menu[i];
         $('#menu').append('<li><a href="' + m.url + '">' + m.label + '</a></li>');
     }
+    $('#menu').append('<li class="dropdown"><a href="javascript:void(0)" class="dropbtn">More ...</a>' + submenu + '</li>');
 
     authToken = 'Basic ' + Cookies.get('outsidely');
 
