@@ -258,21 +258,18 @@ form,#gearlist {
     font-size: medium;
 }
 
-/*
-dropdown menu
-*/
-li a, .dropbtn {
+.dropbtn {
     display: inline-block;
     color: white;
     text-align: center;
     padding: 0px 16px;
     text-decoration: none;
 }
-li a:hover, .dropdown:hover .dropbtn {
+.dropdown:hover .dropbtn {
     background-color: grey;
 }
 li.dropdown {
-display: inline-block;
+  display: inline-block;
 }
 .dropdown-content {
     display: none;
@@ -282,20 +279,19 @@ display: inline-block;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
 }
-  
-.dropdown-content a {
+
+.dropdown-content a  {
 color: black;
-padding: 12px 16px;
+padding: 0px 0px;
 text-decoration: none;
 display: block;
-text-align: left;
+text-align: center;
 }
-  
+
 .dropdown-content a:hover {
-    background-color: grey /*#f1f1f1;*/
+    background-color: grey
 }
-  
 .dropdown:hover .dropdown-content {
   display: block;
 }
-    
+        
