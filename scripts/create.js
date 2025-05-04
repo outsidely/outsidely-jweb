@@ -81,6 +81,7 @@ function init() {
             data = formData;
         }
         else {
+            postBody['time'] = postBody['time'] * 60;
             data = JSON.stringify(postBody);
         }
 
