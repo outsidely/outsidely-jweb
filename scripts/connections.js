@@ -24,7 +24,7 @@ function init() {
                         description = 'Request sent and waiting for response';
                         break;
                     default:
-                        description = 'Unknown'
+                        description = 'Unknown';
                         break;
                 }
 

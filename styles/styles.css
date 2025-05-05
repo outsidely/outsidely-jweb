@@ -257,6 +257,7 @@ form,#gearlist {
     background-color: #e6e6e6;
     font-weight: bold;
     font-size: medium;
+    color: rgb(75, 75, 75);
 }
 
 .dropbtn {
@@ -275,24 +276,18 @@ li.dropdown {
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color:#000 ;
-    min-width: 140px;
+    background-color:#000;
+    min-width: 100px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
 }
-
 .dropdown-content a  {
-color: black;
-padding: 0px 0px;
-text-decoration: none;
-display: block;
-text-align: center;
-border-bottom-left-radius: 5px;
-border-bottom-right-radius: 5px;
+    color: black;
+    padding: 0px 0px;
+    text-decoration: none;
+    display: block;
+    text-align: center;
 }
-
 .dropdown-content a:hover {
     background-color: grey
 }
