@@ -1,9 +1,10 @@
-name: Azure Static Web Apps CI/CD
+name: 🚀 Deploy Website
 
 on:
   push:
     branches:
       - main
+      - dev
   pull_request:
     types: [opened, synchronize, reopened, closed]
     branches:
