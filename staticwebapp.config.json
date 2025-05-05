@@ -1,11 +1,1 @@
-{
-  "routes": [
-    {
-      "route": "activity/{userid}/{activityid}",
-      "methods": [
-        "get"
-      ],
-      "rewrite": "activity.html?userid={userid}&activityid={activityid}"
-    }
-  ]
-}
+{}
