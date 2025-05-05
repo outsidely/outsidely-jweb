@@ -12,7 +12,7 @@ function init() {
                     actionhtml += ' | <a href="javascript:apiAction(baseurl + \'create/connection\',\'POST\',{\'userid\':\'' + currcn.userid + '\',\'connectiontype\':\'confirmed\'})">Confirm</a>';
                 }
 
-                description = '';
+                var description = '';
                 switch (currcn.connectiontype) {
                     case 'connected':
                         description = 'Connected!';
