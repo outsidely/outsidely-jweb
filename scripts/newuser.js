@@ -13,6 +13,10 @@ function createUser() {
     }
 
     payload = {};
+    values = ['userid','email','firstname','lastname','password']
+    for (v in values) {
+        payload[values[v]] = $('#' + values[v]).val();
+    }
 
     $.ajax({
         url: baseurl + 'newuser/' + $('#inviteuserid').val() + '/' + $('#invitationid').val(),
@@ -21,7 +25,7 @@ function createUser() {
         data: JSON.stringify(payload),
         success: function(response) {
             window.alert(`Success! Please save your recoveryid in case you ever lose or forget your password: ${response.recoveryid}`);
-            // set cookie automatically?
+            Cookies.set('outsidely', btoa(`${payload['userid']}:${payload['password']}`), { expires: 30 });
             location.href = '/';
         },
         error: function(response) {

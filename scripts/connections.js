@@ -48,7 +48,9 @@ function createInvitation() {
         headers: {Authorization: authToken},
         data: JSON.stringify(),
         success: function(response) {
-            window.alert(`Success, the invitationid to share is: ${response.invitationid}`);
+            const url = `${weburl}newuser.html?inviteuserid=${whoami}&invitationid=${response.invitationid}`;
+            navigator.clipboard.writeText(url);
+            window.alert(`Success, the invitationid link has been copied to your clipboard: ${url}`);
         },
         error: function(response) {
             window.alert(`Error: ${response.responseText}`)
