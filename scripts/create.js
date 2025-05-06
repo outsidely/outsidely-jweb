@@ -92,9 +92,9 @@ function init() {
             data: data,
             processData: false,
             contentType: false,
-            success: function(json) {
-                alert("Activity uploaded successfully");
-                location.reload();
+            success: function(response) {
+                alert("Activity created successfully");
+                location.href = `activity.html?userid=${whoami}&activityid=${response.activityid}`;
             },
             error: function(xhr, status, error) {
                 alert("Error uploading activity:" + xhr.responseText);
