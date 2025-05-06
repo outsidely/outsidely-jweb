@@ -7,7 +7,7 @@
         <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js"></script>
         <script src="scripts/content.js"></script>
         <script src="scripts/script.js"></script>
-        <script src="scripts/notifications.js"></script>
+        <script src="scripts/newuser.js"></script>
         <link rel="stylesheet" href="styles/styles.css"><link>
         <link rel="shortcut icon" sizes="196x196" href="assets/logo-light.png"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,8 +16,24 @@
         <div id="header" class="header"></div>
         <ul id="menu" class="menu"></ul>
         <h2>
-            Notifications
+            New User
         </h2>
-        <ul id="notifications"></ul>
+        <label>Invited By</label><input type="text" id="inviteuserid"/>
+        <br/>
+        <label>InvitationID</label><input type="text" id="invitationid"/>
+        <br/>
+        <label>UserID</label><input type="text" id="userid"/>
+        <br/>
+        <label>Email</label><input type="text" id="email"/>
+        <br/>
+        <label>First Name</label><input type="text" id="firstname"/>
+        <br/>
+        <label>Last Name</label><input type="text" id="lastname"/>
+        <br/>
+        <label>Password</label><input type="text" id="password"/>
+        <br/>
+        <label>Confirm Password</label><input type="text" id="confirmpassword"/>
+        <br/>
+        <input type="button" value="Create User" onclick="createUser()"/>
     </body>
 </html>

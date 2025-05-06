@@ -36,3 +36,22 @@ function init() {
     })
 
 }
+
+function createConnection() {
+    apiAction(baseurl + 'create/connection', 'POST', {'userid': $('#userid').val(), 'connectiontype': 'confirmed'});
+}
+
+function createInvitation() {
+    $.ajax({
+        url: baseurl + 'create/invitation',
+        method: 'POST',
+        headers: {Authorization: authToken},
+        data: JSON.stringify(),
+        success: function(response) {
+            window.alert(`Success, the invitationid to share is: ${response.invitationid}`);
+        },
+        error: function(response) {
+            window.alert(`Error: ${response.responseText}`)
+        }
+    });
+}

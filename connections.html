@@ -11,7 +11,7 @@
         <script src="//cdn.datatables.net/2.3.0/js/dataTables.min.js"></script>
         <link href="//cdn.datatables.net/2.3.0/css/dataTables.dataTables.min.css" rel="stylesheet" />
         <link rel="stylesheet" href="styles/styles.css"><link>
-        <link rel="shortcut icon" sizes="196x196" href="assets/logo-dark.png"/>
+        <link rel="shortcut icon" sizes="196x196" href="assets/logo-light.png"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
@@ -40,5 +40,13 @@
                 </tbody>
             </table>
         </div>
+        <h2>
+            New Connection
+        </h2>
+        <label>UserID</label><input type="text" id="userid" placeholder="Enter a valid userid"/><input type="button" value="Request Connection" onclick="createConnection()"/>
+        <h2>
+            Invitations
+        </h2>
+        <input type="button" value="Create InvitationID" onclick="createInvitation()"/>
     </body>
 </html>

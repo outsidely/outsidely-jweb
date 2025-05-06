@@ -8,12 +8,12 @@ var whoami = '';
 var menu = [{url: "/", label: "Feed"},{url: "create.html", label: "Upload"},{url: "connections.html", label: "Friends"},{url: "notifications.html", label: 'Msgs <span id="notificationcount"></span>'}];
 var gear = null;
 var loadingactivities = false;
+var qs = new URLSearchParams(location.search);
 
 window.onload = function() {
 
     applyContent();
 
-    qs = new URLSearchParams(location.search);
     userid = qs.get('userid');
     activityid = qs.get('activityid');
     token = qs.get('token');
@@ -24,6 +24,11 @@ window.onload = function() {
     }
 
     authToken = 'Basic ' + Cookies.get('outsidely');
+
+    if (location.href.includes('newuser')) {
+        init();
+        return;
+    }
 
     $.ajax({
         url: baseurl + 'whoami',
@@ -286,6 +291,9 @@ function apiAction(url, method, body) {
         success: function(response){
             window.alert("API action successful");
             location.reload();
+        },
+        error: function(response) {
+            window.alert(`Error: ${response.responseText}`);
         }
     });
 }

@@ -97,7 +97,6 @@ function initMap() {
       maxZoom: 19,
       attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
   }).addTo(map);
-  activityid = new URLSearchParams(window.location.search).get('activityid');
   $.ajax({
     url: baseurl + "data/geojson/" + activityid, 
     headers: {"Authorization": authToken}, 
@@ -114,7 +113,6 @@ function addGeoJson(geojson){
 }
 
 function initChart() {
-  activityid = new URLSearchParams(window.location.search).get('activityid');
   $.ajax({
     url: baseurl + "data/activity/" + activityid, 
     headers: {"Authorization": authToken}, 
