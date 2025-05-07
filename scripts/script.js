@@ -1,7 +1,7 @@
 var baseurl = 'https://api.outsidely.net/';
-//var baseurl = 'http://localhost:7071/';
+var baseurl = 'http://localhost:7071/';
 var weburl = 'https://app.outsidely.net/';
-//var weburl = 'http://localhost:8080/';
+var weburl = 'http://localhost:8080/';
 var authToken = '';
 var nexturl = baseurl + 'activities';
 var userid = '';
