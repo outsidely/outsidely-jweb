@@ -66,7 +66,6 @@ function applyContent() {
     var submenu= '';
     submenu += '<div class="dropdown-content">';
     submenu += '<a href="profile.html">Profile</a>';
-    submenu += '<a href="javascript:void(0)">Invites</a>';
     submenu += '<a href="javascript:authLogout()">Logout</a>'
     submenu += '</div>';
 
