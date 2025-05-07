@@ -250,15 +250,42 @@ form,#gearlist {
     border: 1px solid #000;
 }
 
-.activity-userid {
+.activity-bar {
     margin-bottom: 10px;
     padding: 10px;
     border: 1px solid #000000;
     border-radius: 5px;
     background-color: #e6e6e6;
+    display: flex;
+    align-items: center;
+}
+
+.activity-bar-left {
     font-weight: bold;
     font-size: medium;
-    color: rgb(75, 75, 75);
+}
+.activity-bar-right {
+    float: right;
+    margin-right: 0;
+    margin-left: auto;
+}
+.activity-bar-interaction {
+    border: 1px solid gray;
+    border-radius: 20px;
+    padding: 5px;
+    font-size: small;
+    font-weight: bold;
+    background-color: #c5c5c5;
+    display: inline;
+    margin-left: 5px;
+}
+
+.activity-date {
+    font-size: small;
+    font-weight: normal;
+    font-style: italic;
+    color: rgb(87, 87, 87);
+    display: block;
 }
 
 .dropbtn {
@@ -299,6 +326,11 @@ li.dropdown {
 .icon-small {
     width: 20px;
     margin-right: 5px;
+    vertical-align: middle;
+}
+
+.icon-smaller {
+    width: 15px;
     vertical-align: middle;
 }
 

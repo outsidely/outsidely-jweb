@@ -116,6 +116,8 @@ function loadActivities(url, includepreview, callback) {
                     }
                 }
                 catch (e) {}
+                
+                var activityUrl = 'activity.html?userid=' + a.userid + '&activityid=' + a.activityid;
 
                 div = document.createElement('div');
                 div.setAttribute('class', 'activity-item');
@@ -124,12 +126,22 @@ function loadActivities(url, includepreview, callback) {
                 if (a["visibilitytype"] == 'private') {
                     private_html = '<img class="icon-small" title="This activity is private only to you" src="assets/lock.png"/>';
                 }
-                $(div).append('<div class="activity-userid">' + private_html + '<a href="javascript:void(0)">@' + a.userid + '</a> on ' + a.starttime + '</div>');
+
+                barhtml = `
+                    <div class="activity-bar">
+                        <div class="activity-bar-left">${private_html}<a href="javascript:void(0)">@${a.userid}</a><span class="activity-date">${a.starttime}</span></div>
+                        <div class="activity-bar-right">
+                            <a href="${activityUrl}#props"><span class="activity-bar-interaction">${a.props.length}<img class="icon-smaller" src="assets/props.png"/></span></a><a href="${activityUrl}#comments"><span class="activity-bar-interaction">${a.comments.length}<img class="icon-smaller" src="assets/comments.png"/></span></a>
+                        </div>
+                    </div>
+                `;
+
+                $(div).append(barhtml);
 
                 if (includepreview && (haspreview || hasmedia)) {
 
                     link = document.createElement('a');
-                    link.setAttribute('href', 'activity.html?userid=' + a.userid + '&activityid=' + a.activityid);
+                    link.setAttribute('href', activityUrl);
     
                     img = document.createElement('img');
                     img.setAttribute('src', baseurl + a.previewurl);
@@ -147,7 +159,7 @@ function loadActivities(url, includepreview, callback) {
                 // icons from: https://fonts.google.com/icons size 50 color #000000
                 $(div).append('<div class="activity-title"><a href="'+'activity.html?userid=' + a.userid + '&activityid=' + a.activityid+'"><img class="activity-icon" src="assets/' + a.activitytype + '.png"/><span class="activity-text">'+a["name"]+'</a></span></div>');
 
-                properties = ['description', 'gear.name', 'activitytype', 'distance', 'time', 'ascent', 'speed', 'props', 'comments'];
+                properties = ['description', 'gear.name', 'activitytype', 'distance', 'time', 'ascent', 'speed'];
                 for (i in properties) {
                     try {
                         if (properties[i].includes('.')) {

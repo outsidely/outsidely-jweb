@@ -55,5 +55,19 @@
             your recovery code in the event that you forget your password.
         </p>
         <input type="button" value="Generate Recovery Code" onclick="createRecoveryCode()"/>
+        <h2>
+            Delete Account
+        </h2>
+        <i style="color: red">!!! DANGER ZONE !!!</i>
+        <p>
+            If you wish to delete your outsidely account, you may do so via a two step process to confirm your desire.
+            The first time the Delete Account button is clicked it will provide a confirmation code. You must place the
+            confirmation code in the text box and click Delete Account a second time to truly delete your account.
+        </p>
+        <p>
+            <b>Deletion of accounts is permanent and irreversible.</b>
+        </p>
+        <input type="text" id="deleteid" placeholder="Confirmation Code"/>
+        <input type="button" value="Delete Account" onclick="deleteAccount()"/>
     </body>
 </html>

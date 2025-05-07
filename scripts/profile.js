@@ -133,3 +133,34 @@ function createRecoveryCode() {
         }
     });
 }
+
+function deleteAccount() {
+    if ($('#deleteid').val() != '') {
+        $.ajax({
+            url: baseurl + 'delete/user/' + whoami + '/' + $('#deleteid').val(),
+            method: 'DELETE',
+            headers: {Authorization: authToken},
+            success: function(response) {
+                window.alert(`Your account has been deleted.`);
+                location.reload();
+            },
+            error: function(response) {
+                window.alert(`Error: ${response.responseText}`);
+            }
+        });
+    }
+    else {
+        $.ajax({
+            url: baseurl + 'delete/user/' + whoami,
+            method: 'DELETE',
+            headers: {Authorization: authToken},
+            success: function(response) {
+                navigator.clipboard.writeText(response.deleteid);
+                window.alert(`Your confirmation code has been copied to the clipboard: ${response.deleteid}`);
+            },
+            error: function(response) {
+                window.alert(`Error: ${response.responseText}`);
+            }
+        });
+    }
+}
