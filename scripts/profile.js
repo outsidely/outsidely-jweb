@@ -118,3 +118,18 @@ function updateGear(gearid) {
     var body = {name:$('input[name="name"][gearid="' + gearid + '"]').val(),geartype:$('select[gearid="' + gearid + '"]').val()};
     apiAction(baseurl + 'update/gear/' + gearid, 'PATCH', body);
 }
+
+function createRecoveryCode() {
+    $.ajax({
+        url: baseurl + 'create/recoveryid',
+        method: 'POST',
+        headers: {Authorization: authToken},
+        success: function(response) {
+            navigator.clipboard.writeText(response.recoveryid);
+            window.alert(`Your recovery code has been copied to the clipboard: ${response.recoveryid}`);
+        },
+        error: function(response) {
+            window.alert(`Error: ${response.responseText}`);
+        }
+    });
+}

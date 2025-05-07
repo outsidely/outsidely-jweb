@@ -27,7 +27,7 @@ window.onload = function() {
 
     authToken = 'Basic ' + Cookies.get('outsidely');
 
-    if (location.href.includes('newuser')) {
+    if (location.href.includes('newuser') || location.href.includes('recover')) {
         init();
         return;
     }
