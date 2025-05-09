@@ -4,8 +4,8 @@ function init() {
         url: baseurl + 'read/connections',
         headers: {'Authorization': authToken},
         success: function(response) {
-            var actionhtml = '';
             for (cn in response.connections) {
+                var actionhtml = '';
                 currcn = response.connections[cn];
                 actionhtml += '<a href="javascript:apiDelete(\'connection\', \'' + currcn.userid + '\',\'DELETE\')">Remove</a>';
                 if (currcn.connectiontype == 'pending') {

@@ -1,7 +1,7 @@
 var baseurl = 'https://api.outsidely.net/';
-//var baseurl = 'http://localhost:7071/';
+var baseurl = 'http://localhost:7071/';
 var weburl = 'https://app.outsidely.net/';
-//var weburl = 'http://localhost:8080/';
+var weburl = 'http://localhost:8080/';
 var authToken = '';
 var nexturl = baseurl + 'activities';
 var userid = '';
@@ -287,13 +287,17 @@ function apiDelete(type, id, id2) {
     
 }
 
-function apiAction(url, method, body) {
-    payload = '';
-    try {
-        payload = JSON.stringify(body);
+function apiAction(url, method, body, stringtype = false) {
+    if (stringtype == true) {
+        payload = body.replaceAll('__doublequote__', '"');
     }
-    catch (e) {
-        payload = JSON.stringify({});
+    else {
+        try {
+            payload = JSON.stringify(body);
+        }
+        catch (e) {
+            payload = JSON.stringify({});
+        }
     }
     $.ajax({
         type: method,

@@ -11,7 +11,11 @@ function init() {
                 if (n.options) {
                     for (j in n.options) {
                         o = n.options[j];
-                        optionshtml += '<input type="button" onclick="apiAction(\'' + baseurl + o.url + '\',\'' + o.method + '\',\'' + o.body + '\')" value="' + o.text + '"/>';
+                        let b = o.body;
+                        if (!o.body) {
+                            b = '';
+                        }
+                        optionshtml += '<input type="button" onclick="apiAction(\'' + baseurl + o.url + '\',\'' + o.method + '\',\'' + b.replaceAll('"','__doublequote__') + '\',true)" value="' + o.text + '"/>';
                     }
                 }
                 try {
@@ -23,7 +27,9 @@ function init() {
                 html += '<li>' + n.message + ' - ' + linkhtml + ' - ' + n.createtime + optionshtml + '</li>';
                 $('#notifications').html(html);
             }
-            
+            if (json.notifications.length == 0) {
+                $('#notifications').html('<li>You have no notifications</li>');
+            }
         }
     });
 
