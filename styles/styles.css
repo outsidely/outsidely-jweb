@@ -262,7 +262,7 @@ form,#gearlist {
 
 .activity-bar-left {
     font-weight: bold;
-    font-size: medium;
+    font-size: large;
 }
 .activity-bar-right {
     float: right;
@@ -273,10 +273,18 @@ form,#gearlist {
     border: 1px solid gray;
     border-radius: 20px;
     padding: 5px;
-    font-size: small;
+    font-size: large;
     font-weight: bold;
     background-color: #c5c5c5;
     display: inline;
+    margin-left: 5px;
+}
+.activity-bar-interaction:hover {
+    background-color: rgb(157, 196, 176);
+}
+.activity-bar-icon {
+    width: 20px;
+    vertical-align: middle;
     margin-left: 5px;
 }
 

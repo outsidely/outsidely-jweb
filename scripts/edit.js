@@ -99,7 +99,7 @@ function init() {
     });
 
     $('#delete-button').click(function() {
-        apiDelete('activity', activityid);
+        apiDelete('activity', activityid, null, 'index.html');
     });
 
 }
