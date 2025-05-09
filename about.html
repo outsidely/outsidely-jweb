@@ -1,0 +1,78 @@
+<html>
+    <head>
+        <title>
+            Outsidely
+        </title>
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js"></script>
+        <script src="scripts/content.js"></script>
+        <script src="scripts/script.js"></script>
+        <link rel="stylesheet" href="styles/styles.css"><link>
+        <link rel="shortcut icon" sizes="196x196" href="assets/logo-transparent.png"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div id="header" class="header"></div>
+        <ul id="menu" class="menu"></ul>
+        <h2>
+            About
+        </h2>
+        <div id="container-about">
+            <h3>
+                How can I contact someone regarding something involving Outsidely?
+            </h3>
+            <p>
+                Consider sending an email to <a href="mailto:outsidelyproject@gmail.com">outsidelyproject@gmail.com</a>
+                Alternatively, you can create an issue or post on the <a href="https://github.com/outsidely">Outsidely Organization GitHub Page</a>.
+            </p>
+            <h3>
+                What is Outsidely?
+            </h3>
+            <p>
+                Outsidely is a rudimentary activity tracker for those who are more interested in just getting
+                outside than they are in their training or stats.
+            </p>
+            <h3>
+                What is Outsidely not?
+            </h3>
+            <p>
+                Outsidely isn't and won't ever be a replacement for feature rich fitness trackers like Strava and Garmin Connect.
+            </p>
+            <h3>
+                Creating Activities
+            </h3>
+            <p>
+                Activities can be added manually, or GPX files can be uploaded.
+                Almost all major devices and apps support exporting as GPX directly. Many only do through their websites and not
+                their mobile apps. Strava, for example, can export GPX files once data is synchronized there.
+            </p>
+            <p>
+                Unfortunately, companies like Garmin, Wahoo, Coros, and Suunto do not provide public API access for users and their data.
+                This means that it isn't possible to automatically sync activities from devices.
+            </p>
+            <h3>
+                Technical Information
+            </h3>
+            <p>
+                The challenge at the outset was to utilize only free or dirt cheap serverless services on <a href="https://azure.com">Microsoft Azure</a>.
+            </p>
+            <ul>
+                <li>
+                    <a href="https://azure.microsoft.com/en-us/products/functions">Azure Functions</a> are used on a consumption basis for processing and APIs.
+                </li>
+                <li>
+                    <a href="https://azure.microsoft.com/en-us/products/app-service/static">Azure Static Web Apps</a> is used for the website.
+                </li>
+                <li>
+                    <a href="https://azure.microsoft.com/en-us/products/storage/tables">Azure Table Storage</a> is used for storing and retrieving attribute data.
+                </li>
+                <li>
+                    <a href="https://azure.microsoft.com/en-us/products/storage/blobs">Azure Blob Storage</a> is used for storing and retrieving binary data.
+                </li>
+            </ul>
+            <p>
+
+            </p>
+        </div>
+    </body>
+</html>

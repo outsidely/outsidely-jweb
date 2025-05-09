@@ -352,3 +352,8 @@ li.dropdown {
     padding: 10px;
     box-sizing: border-box;
 }
+
+#container-about {
+    max-width: 800px;
+    margin: 0 auto;
+}
