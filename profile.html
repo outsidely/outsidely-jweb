@@ -53,7 +53,10 @@
         </h2>
         <p>
             If you do not currently have your recovery code securely stored somewhere, you can generate a new one.
-            Recovery codes cannot be retrieved - they can only be created. <i>You</i> are responsible for securing and finding
+            Recovery codes cannot be retrieved - they can only be created.
+            If you generate a new recovery code, any recovery code you currently have will be invalidated. Only one recovery code
+            can be valid at any given time.
+            <i>You</i> are responsible for securing and finding
             your recovery code in the event that you forget your password.
         </p>
         <input type="button" value="Generate Recovery Code" onclick="createRecoveryCode()"/>
@@ -62,12 +65,12 @@
         </h2>
         <i style="color: red">!!! DANGER ZONE !!!</i>
         <p>
-            If you wish to delete your outsidely account, you may do so via a two step process to confirm your desire.
+            If you wish to delete your outsidely account, you may do so via a two step process.
             The first time the Delete Account button is clicked it will provide a confirmation code. You must place the
             confirmation code in the text box and click Delete Account a second time to truly delete your account.
         </p>
         <p>
-            <b>Deletion of accounts is permanent and irreversible.</b>
+            <b>Warning: Deletion of accounts is permanent and irreversible.</b>
         </p>
         <input type="text" id="deleteid" placeholder="Confirmation Code"/>
         <input type="button" value="Delete Account" onclick="deleteAccount()"/>
