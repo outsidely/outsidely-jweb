@@ -33,7 +33,7 @@ function init() {
 }
 
 function requestConnection() {
-    apiAction(baseurl + 'create/connection', 'POST', {userid: userid, connectiontype: 'confirmed'});
+    apiAction(baseurl + 'create/connection', 'POST', {userid: userid, connectiontype: 'confirmed'}, false, 'connections.html');
 }
 
 function userConnected() {

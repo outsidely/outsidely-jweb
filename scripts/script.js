@@ -283,7 +283,7 @@ function apiDelete(type, id, id2, redirecturl) {
         success: function(response){
             window.alert("delete successful");
             if (redirecturl) {
-                location.href = 'index.html';
+                location.href = redirecturl;
             }
             else {
                 location.reload();
@@ -302,7 +302,7 @@ function apiDelete(type, id, id2, redirecturl) {
     
 }
 
-function apiAction(url, method, body, stringtype = false) {
+function apiAction(url, method, body, stringtype = false, redirecturl = null) {
     if (stringtype == true) {
         payload = body.replaceAll('__doublequote__', '"');
     }
@@ -322,7 +322,12 @@ function apiAction(url, method, body, stringtype = false) {
         data: payload,
         success: function(response){
             window.alert("API action successful");
-            location.reload();
+            if (redirecturl) {
+                location.href = redirecturl;
+            }
+            else {
+                location.reload();
+            }
         },
         error: function(response) {
             try {
