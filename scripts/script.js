@@ -160,22 +160,22 @@ function loadActivities(url, includepreview, callback) {
                 // icons from: https://fonts.google.com/icons size 50 color #000000
                 $(div).append('<div class="activity-title"><a href="'+'activity.html?userid=' + a.userid + '&activityid=' + a.activityid+'"><img class="activity-icon" src="assets/' + a.activitytype + '.png"/><span class="activity-text">'+a["name"]+'</a></span></div>');
 
-                properties = ['description', 'gear.name', 'activitytype', 'distance', 'time', 'ascent', 'speed'];
+                properties = {'description': 'Description', 'gear.name': 'Gear', 'distance': 'Distance', 'time': 'Time', 'ascent': 'Elevation', 'speed': 'Speed'};
                 for (i in properties) {
                     try {
-                        if (properties[i].includes('.')) {
-                            var parts = properties[i].split('.');
+                        if (i.includes('.')) {
+                            var parts = i.split('.');
                             v = a[parts[0]][parts[1]];
                         }
                         else {
-                            isarray = Array.isArray(a[properties[i]]);
-                            if (a[properties[i]].length > 0 || isarray) {
+                            isarray = Array.isArray(a[i]);
+                            if (a[i].length > 0 || isarray) {
                                 var v;
                                 if (isarray) {
-                                    v = a[properties[i]].length;
+                                    v = a[i].length;
                                 }
                                 else {
-                                    v = a[properties[i]];
+                                    v = a[i];
                                 }
                             }
                         }
