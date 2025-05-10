@@ -9,4 +9,9 @@ contents['header'] = `
         Outsidely
     </h1>
 </div>
+<div class="header-right">
+    <a href="profile.html">
+        <img class="icon-small" src="assets/account.png"/><span id="whoami"></span>
+    </a>
+</div>
 `

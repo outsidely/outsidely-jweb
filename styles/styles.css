@@ -207,6 +207,18 @@ span.commentDate {
 .logo-image {
     width: 75px;
 }
+.header-right {
+    float: right;
+    margin-right: 5px;
+    margin-left: auto;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    background-color: whitesmoke;
+    padding: 10px;
+}
+.header-right span {
+    font-weight: bold;
+}
 
 .activity-title {
     align-items: center;

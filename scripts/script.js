@@ -37,6 +37,7 @@ window.onload = function() {
         headers: {"Authorization": authToken},
         success: function(json) {
             whoami = json.userid;
+            $('#whoami').html(whoami);
             $.ajax({
                 url: baseurl + 'read/notifications',
                 headers: {"Authorization": authToken},
@@ -65,7 +66,6 @@ function applyContent() {
 
     var submenu= '';
     submenu += '<div class="dropdown-content">';
-    submenu += '<a href="profile.html">Profile</a>';
     submenu += '<a href="about.html">About</a>';
     submenu += '<a href="javascript:authLogout()">Logout</a>'
     submenu += '</div>';
