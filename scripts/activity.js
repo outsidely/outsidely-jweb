@@ -15,31 +15,11 @@ function init() {
   }
 
   $('#createprops').click(function() {
-    $.ajax({
-      type: "POST",
-      url: baseurl + "create/prop/" + userid + "/" + activityid, 
-      headers: {"Authorization": authToken}, 
-      data: JSON.stringify({}),
-      dataType: "json", 
-      success: function(response){
-        window.alert("create successful");
-        location.reload();
-      }
-    });
+    apiAction(baseurl + "create/prop/" + userid + "/" + activityid, 'POST');
   });
 
   $('#createcomment').click(function() {
-    $.ajax({
-      type: "POST",
-      url: baseurl + "create/comment/" + userid + "/" + activityid, 
-      headers: {"Authorization": authToken}, 
-      data: JSON.stringify({comment: $('#commenttext').val()}),
-      dataType: "json", 
-      success: function(response){
-        window.alert("create successful");
-        location.reload();
-      }
-    });
+    apiAction(baseurl + "create/comment/" + userid + "/" + activityid, 'POST', {comment: $('#commenttext').val()});
   });
 
   loadActivities(baseurl + 'activities/' + userid + '/' + activityid, false, activitiesLoaded);
@@ -77,7 +57,7 @@ function activitiesLoaded(json) {
     if (p[i].userid == whoami) {
       deletehtml = ' <input type="button" onclick="apiDelete(\'prop\',\'' + json.activities[0].activityid + '\')" value="Delete"></input>';
     }
-    $('#props').append('<li>' + p[i].userid + deletehtml + '</li>');
+    $('#props').append('<li><a href="user.html?userid=' + p[i].userid + '">@' + p[i].userid + '</a>' + deletehtml + '</li>');
   }
 
   c = json.activities[0].comments;
@@ -86,7 +66,7 @@ function activitiesLoaded(json) {
     if (c[i].userid == whoami) {
       deletehtml = ' <input type="button" onclick="apiDelete(\'comment\',\'' + json.activities[0].activityid + '\',\'' + c[i].commentid + '\')" value="Delete" class="commentDelete"></input>';
     }
-    $('#comments').append('<li><span class="commentText">' + c[i].comment + '</span> - <span class="commentUserid">' + c[i].userid + '</span> - <span class="commentDate">(' + c[i].createtime + ')</span>' + deletehtml + '</li>');
+    $('#comments').append('<li><span class="commentText">' + c[i].comment + '</span> - <span class="commentUserid"><a href="user.html?userid=' + c[i].userid + '">@' + c[i].userid + '</a></span> - <span class="commentDate">(' + c[i].createtime + ')</span>' + deletehtml + '</li>');
   }
 
 }

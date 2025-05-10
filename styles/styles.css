@@ -375,3 +375,10 @@ li.dropdown {
     font-weight: bold;
     color: darkslategray;
 }
+
+.statistics-label {
+    color: red;
+}
+.statistics-value {
+    display: inline-block
+}
