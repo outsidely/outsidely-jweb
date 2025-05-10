@@ -10,7 +10,7 @@ contents['header'] = `
     </h1>
 </div>
 <div class="header-right">
-    <a href="profile.html">
+    <a id="whoamilink" href="#">
         <img class="icon-small" src="assets/account.png"/><span id="whoami"></span>
     </a>
 </div>

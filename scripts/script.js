@@ -38,6 +38,7 @@ window.onload = function() {
         success: function(json) {
             whoami = json.userid;
             $('#whoami').html(whoami);
+            $('#whoamilink').attr('href', 'user.html?userid=' + whoami);
             $.ajax({
                 url: baseurl + 'read/notifications',
                 headers: {"Authorization": authToken},

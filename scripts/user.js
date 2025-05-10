@@ -5,27 +5,32 @@ function init() {
         url: baseurl + 'read/connections',
         headers: {Authorization: authToken},
         success: function(response) {
-            let userconnected = false;
-            for (r in response.connections) {
-                if (response.connections[r].userid == userid && response.connections[r].connectiontype == 'connected') {
-                    userconnected = true;
-                    break;
-                }
-            }
-            if (userconnected) {
+            if (whoami == userid) {
                 userConnected();
             }
             else {
-                let html = `
-                    <p>
-                        Not connected to ${userid}.
-                    </p>
-                    <p>
-                        If you would like to send a connection request, <a href="javascript:requestConnection()">click here</a>.
-                    <p>
-                `;
-                $('#usercard').html(html);
-                $('#progress').hide();
+                let userconnected = false;
+                for (r in response.connections) {
+                    if (response.connections[r].userid == userid && response.connections[r].connectiontype == 'connected') {
+                        userconnected = true;
+                        break;
+                    }
+                }
+                if (userconnected) {
+                    userConnected();
+                }
+                else {
+                    let html = `
+                        <p>
+                            Not connected to ${userid}.
+                        </p>
+                        <p>
+                            If you would like to send a connection request, <a href="javascript:requestConnection()">click here</a>.
+                        <p>
+                    `;
+                    $('#usercard').html(html);
+                    $('#progress').hide();
+                }
             }
         }
     });
