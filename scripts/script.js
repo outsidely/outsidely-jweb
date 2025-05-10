@@ -43,9 +43,13 @@ window.onload = function() {
                 url: baseurl + 'read/notifications',
                 headers: {"Authorization": authToken},
                 success: function(json) {
-                    count = json.notifications.length;
+                    let count = json.notifications.length;
+                    let countstr = count.toString();
                     if (count > 0) {
-                        $('#notificationcount').html('('+json.notifications.length+')');
+                        if (count > 9) {
+                            countstrl = '9+';
+                        }
+                        $('#notificationcount').html('(' + countstr + ')');
                     }
                     init();
                 }
