@@ -369,3 +369,9 @@ li.dropdown {
     max-width: 800px;
     margin: 0 auto;
 }
+
+#name {
+    font-size: large;
+    font-weight: bold;
+    color: darkslategray;
+}
