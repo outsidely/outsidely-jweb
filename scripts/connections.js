@@ -28,7 +28,7 @@ function init() {
                         break;
                 }
 
-                $('#connections-body').append('<tr><td><a href="javascript:void(0)">@' + currcn.userid + '</a></td><td>' + description + '</td><td>' + actionhtml + '</td></tr>')
+                $('#connections-body').append('<tr><td><a href="user.html?userid=' + currcn.userid + '">@' + currcn.userid + '</a></td><td>' + description + '</td><td>' + actionhtml + '</td></tr>')
 
             }
             let table = new DataTable('#connections-table');

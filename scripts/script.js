@@ -130,7 +130,7 @@ function loadActivities(url, includepreview, callback) {
 
                 barhtml = `
                     <div class="activity-bar">
-                        <div class="activity-bar-left">${private_html}<a href="javascript:void(0)">@${a.userid}</a><span class="activity-date">${a.starttime}</span></div>
+                        <div class="activity-bar-left">${private_html}<a href="user.html?userid=${a.userid}">@${a.userid}</a><span class="activity-date">${a.starttime}</span></div>
                         <div class="activity-bar-right">
                             <a href="javascript:apiAction('${baseurl}create/prop/${a.userid}/${a.activityid}', 'POST', JSON.stringify({}))"><span class="activity-bar-interaction">${a.props.length}<img class="activity-bar-icon" src="assets/props.png"/></span></a><a href="${activityUrl}#comments"><span class="activity-bar-interaction">${a.comments.length}<img class="activity-bar-icon" src="assets/comments.png"/></span></a>
                         </div>
