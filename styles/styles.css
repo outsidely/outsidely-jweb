@@ -294,6 +294,9 @@ form,#gearlist {
 .activity-bar-interaction:hover {
     background-color: rgb(157, 196, 176);
 }
+.interaction-active {
+    background-color: rgb(157, 196, 176);
+}
 .activity-bar-icon {
     width: 20px;
     vertical-align: middle;

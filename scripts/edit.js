@@ -63,8 +63,13 @@ function init() {
                 alert("Update successful");
                 location.reload();
             },
-            error: function(xhr, status, error) {
-                alert("Error updating " + xhr.responseText);
+            error: function(response) {
+                try {
+                    window.alert(`Error: ${response.responseJSON.message}`);
+                }
+                catch (e) {
+                    window.alert(`Error`);
+                }
             }
         });
     });
@@ -84,14 +89,19 @@ function init() {
                 data: formData,
                 processData: false,
                 contentType: false,
-                error: function() {
-                    alert("upload error");
-                },
-                complete: function() {
+                success: function() {
                     progresscnt++;
                     if (progresscnt == uploadcnt) {
                         alert("upload complete");
                         location.reload();
+                    }
+                },
+                error: function(response) {
+                    try {
+                        window.alert(`Error: ${response.responseJSON.message}`);
+                    }
+                    catch (e) {
+                        window.alert(`Error`);
                     }
                 }
             });

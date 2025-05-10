@@ -32,6 +32,14 @@ function init() {
 
             }
             let table = new DataTable('#connections-table');
+        },
+        error: function(response) {
+            try {
+                window.alert(`Error: ${response.responseJSON.message}`);
+            }
+            catch (e) {
+                window.alert(`Error`);
+            }
         }
     })
 
@@ -53,7 +61,12 @@ function createInvitation() {
             window.alert(`Success, the invitationid link has been copied to your clipboard: ${url}`);
         },
         error: function(response) {
-            window.alert(`Error: ${response.responseText}`)
+                    try {
+                        window.alert(`Error: ${response.responseJSON.message}`);
+                    }
+                    catch (e) {
+                        window.alert(`Error`);
+                    }
         }
     });
 }

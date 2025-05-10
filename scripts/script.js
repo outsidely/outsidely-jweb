@@ -130,11 +130,19 @@ function loadActivities(url, includepreview, callback) {
                     private_html = '<img class="icon-small" title="This activity is private only to you" src="assets/lock.png"/>';
                 }
 
+                propclass = '';
+                for (p in a.props) {
+                    if (a.props[p].userid == whoami) {
+                        propclass = 'interaction-active';
+                        break;
+                    }
+                }
+
                 barhtml = `
                     <div class="activity-bar">
                         <div class="activity-bar-left">${private_html}<a href="user.html?userid=${a.userid}">@${a.userid}</a><span class="activity-date">${a.starttime}</span></div>
                         <div class="activity-bar-right">
-                            <a href="javascript:apiAction('${baseurl}create/prop/${a.userid}/${a.activityid}', 'POST', JSON.stringify({}))"><span class="activity-bar-interaction">${a.props.length}<img class="activity-bar-icon" src="assets/props.png"/></span></a><a href="${activityUrl}#comments"><span class="activity-bar-interaction">${a.comments.length}<img class="activity-bar-icon" src="assets/comments.png"/></span></a>
+                            <a href="javascript:apiAction('${baseurl}create/prop/${a.userid}/${a.activityid}', 'POST', JSON.stringify({}))"><span class="activity-bar-interaction ${propclass}">${a.props.length}<img class="activity-bar-icon" src="assets/props.png"/></span></a><a href="activity.html?userid=${a.userid}&activityid=${a.activityid}#comments"><span class="activity-bar-interaction">${a.comments.length}<img class="activity-bar-icon" src="assets/comments.png"/></span>
                         </div>
                     </div>
                 `;
@@ -292,10 +300,10 @@ function apiDelete(type, id, id2, redirecturl) {
         },
         error: function(response) {
             try {
-                window.alert(response.responseJSON.message);
+                window.alert(`Error: ${response.responseJSON.message}`);
             }
             catch (e) {
-                window.alert('Error');
+                window.alert(`Error`);
             }
         }
     });
@@ -332,10 +340,10 @@ function apiAction(url, method, body, stringtype = false, redirecturl = null) {
         },
         error: function(response) {
             try {
-                window.alert(response.responseJSON.message);
+                window.alert(`Error: ${response.responseJSON.message}`);
             }
             catch (e) {
-                window.alert('Error');
+                window.alert(`Error`);
             }
         }
     });

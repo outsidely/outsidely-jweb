@@ -77,8 +77,13 @@ function init() {
                 alert("Profile updated successfully");
                 location.reload();
             },
-            error: function(xhr, status, error) {
-                alert("Error updating profile" + xhr.responseText);
+            error: function(response) {
+                try {
+                    window.alert(`Error: ${response.responseJSON.message}`);
+                }
+                catch (e) {
+                    window.alert(`Error`);
+                }
             }
         });
     });
@@ -106,8 +111,13 @@ function init() {
                 alert("Create successful");
                 location.reload();
             },
-            error: function(xhr, status, error) {
-                alert("Error creating " + xhr.responseText);
+           error: function(response) {
+                try {
+                    window.alert(`Error: ${response.responseJSON.message}`);
+                }
+                catch (e) {
+                    window.alert(`Error`);
+                }
             }
         });
     });
@@ -129,7 +139,12 @@ function createRecoveryCode() {
             window.alert(`Your recovery code has been copied to the clipboard: ${response.recoveryid}`);
         },
         error: function(response) {
-            window.alert(`Error: ${response.responseText}`);
+            try {
+                window.alert(`Error: ${response.responseJSON.message}`);
+            }
+            catch (e) {
+                window.alert(`Error`);
+            }
         }
     });
 }
@@ -145,7 +160,12 @@ function deleteAccount() {
                 location.reload();
             },
             error: function(response) {
-                window.alert(`Error: ${response.responseText}`);
+                try {
+                    window.alert(`Error: ${response.responseJSON.message}`);
+                }
+                catch (e) {
+                    window.alert(`Error`);
+                }
             }
         });
     }
@@ -159,7 +179,12 @@ function deleteAccount() {
                 window.alert(`Your confirmation code has been copied to the clipboard: ${response.deleteid}`);
             },
             error: function(response) {
-                window.alert(`Error: ${response.responseText}`);
+                try {
+                    window.alert(`Error: ${response.responseJSON.message}`);
+                }
+                catch (e) {
+                    window.alert(`Error`);
+                }
             }
         });
     }

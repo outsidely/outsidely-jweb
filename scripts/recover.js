@@ -29,7 +29,12 @@ function recover() {
             location.href = '/';
         },
         error: function(response) {
-            window.alert(`Error: ${response.responseText}`)
+            try {
+                window.alert(`Error: ${response.responseJSON.message}`);
+            }
+            catch (e) {
+                window.alert(`Error`);
+            }
         }
     });
 

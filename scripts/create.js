@@ -96,8 +96,13 @@ function init() {
                 alert("Activity created successfully");
                 location.href = `activity.html?userid=${whoami}&activityid=${response.activityid}`;
             },
-            error: function(xhr, status, error) {
-                alert("Error uploading activity:" + xhr.responseText);
+            error: function(response) {
+                    try {
+                        window.alert(`Error: ${response.responseJSON.message}`);
+                    }
+                    catch (e) {
+                        window.alert(`Error`);
+                    }
             },
             complete: function() {
                 $('#upload-button').show();
