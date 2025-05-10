@@ -55,6 +55,12 @@ label {
     input,textarea,select,button {
         font-size: large;
     }
+    #whoami {
+        display: none;
+    }
+    .icon-small {
+        margin-right: 0 !important;
+    }
 } 
 
 #upload-form {
