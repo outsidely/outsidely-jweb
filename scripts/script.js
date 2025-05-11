@@ -1,7 +1,7 @@
 var baseurl = 'https://api.outsidely.net/';
-//var baseurl = 'http://localhost:7071/';
+var baseurl = 'http://localhost:7071/';
 var weburl = 'https://app.outsidely.net/';
-//var weburl = 'http://localhost:8080/';
+var weburl = 'http://localhost:8080/';
 var authToken = '';
 var nexturl = baseurl + 'activities';
 var userid = '';
@@ -18,36 +18,32 @@ window.onload = function() {
 
     userid = qs.get('userid');
     activityid = qs.get('activityid');
-    token = qs.get('token');
+    authToken = 'Bearer ' + Cookies.get('outsidely');
+
+    okpages = ['newuser','recover','login','about'];
+    for (okp in okpages) {
+        if (location.href.includes(okpages[okp] + '.html')) {
+            init();
+            return;
+        }
+    }
     
-    if (token) {
-        Cookies.set('outsidely', token, { expires: 30 });
-        location.href = 'index.html';
-    }
-
-    authToken = 'Basic ' + Cookies.get('outsidely');
-
-    if (location.href.includes('newuser') || location.href.includes('recover')) {
-        init();
-        return;
-    }
-
     $.ajax({
         url: baseurl + 'whoami',
         headers: {"Authorization": authToken},
-        success: function(json) {
-            whoami = json.userid;
+        success: function(response) {
+            whoami = response.userid;
             $('#whoami').html(whoami);
             $('#whoamilink').attr('href', 'user.html?userid=' + whoami);
             $.ajax({
                 url: baseurl + 'read/notifications',
                 headers: {"Authorization": authToken},
-                success: function(json) {
-                    let count = json.notifications.length;
+                success: function(response) {
+                    let count = response.notifications.length;
                     let countstr = count.toString();
                     if (count > 0) {
                         if (count > 9) {
-                            countstrl = '9+';
+                            countstr = '9+';
                         }
                         $('#notificationcount').html('(' + countstr + ')');
                     }
@@ -55,9 +51,8 @@ window.onload = function() {
                 }
             });
         },
-        error: function(xhr, status, error) {
-            //alert("Error getting user information");
-            location.replace(baseurl + "login?redirecturl=" + encodeURIComponent(location.href));
+        error: function(response) {
+            location.href = 'login.html';
         }
     });
 
