@@ -1,4 +1,4 @@
-baseurl = 'https://api.outsidely.net/';
+var baseurl = 'https://api.outsidely.net/';
 var weburl = 'https://app.outsidely.net/';
 var authToken = '';
 var nexturl = baseurl + 'activities';
@@ -15,6 +15,7 @@ window.onload = function() {
     if (!location.href.includes('outsidely.net')){
         baseurl = 'http://localhost:7071/';
         weburl = 'http://localhost:8080/';
+        nexturl = baseurl + 'activities';
     }
 
     applyContent();
