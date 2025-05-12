@@ -1,7 +1,5 @@
-var baseurl = 'https://api.outsidely.net/';
-//var baseurl = 'http://localhost:7071/';
+baseurl = 'https://api.outsidely.net/';
 var weburl = 'https://app.outsidely.net/';
-//var weburl = 'http://localhost:8080/';
 var authToken = '';
 var nexturl = baseurl + 'activities';
 var userid = '';
@@ -13,6 +11,11 @@ var loadingactivities = false;
 var qs = new URLSearchParams(location.search);
 
 window.onload = function() {
+
+    if (!location.href.includes('outsidely.net')){
+        baseurl = 'http://localhost:7071/';
+        weburl = 'http://localhost:8080/';
+    }
 
     applyContent();
 
