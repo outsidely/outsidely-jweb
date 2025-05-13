@@ -85,7 +85,7 @@ function applyContent() {
 
 function authLogout() {
     Cookies.remove('outsidely');
-    location.reload();
+    location.href = "login.html";
 }
 
 function loadActivities(url, includepreview, callback) {
