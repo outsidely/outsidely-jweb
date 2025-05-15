@@ -56,7 +56,7 @@ label {
         font-size: large;
     }
     #whoami {
-        display: none;
+        font-size: small;
     }
     .icon-small {
         margin-right: 0 !important;
