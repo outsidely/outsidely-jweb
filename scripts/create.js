@@ -102,14 +102,12 @@ function init() {
                 }
             },
             error: function(response) {
-                    try {
-                        window.alert(`Error: ${response.responseJSON.message}`);
-                    }
-                    catch (e) {
-                        window.alert(`Error`);
-                    }
-            },
-            complete: function() {
+                try {
+                    window.alert(`Error: ${response.responseJSON.message}`);
+                }
+                catch (e) {
+                    window.alert(`Error`);
+                }
                 $('#upload-button').show();
                 $('#progress').hide();
             }
