@@ -93,8 +93,13 @@ function init() {
             processData: false,
             contentType: false,
             success: function(response) {
-                alert("Activity created successfully");
-                location.href = `activity.html?userid=${whoami}&activityid=${response.activityid}`;
+                activityid = response.activityid;
+                if (document.getElementById('upload-media').files.length > 0) {
+                    uploadMedia();
+                }
+                else {
+                    uploadComplete();
+                }
             },
             error: function(response) {
                     try {
@@ -116,4 +121,40 @@ function init() {
 
 function flatpickr2UTC(id) {
     return luxon.DateTime.fromISO($('#' + id).val().replace(' ','T')).toUTC().toString();
+}
+
+function uploadComplete() {
+    alert("Activity created successfully");
+    location.href = `activity.html?userid=${whoami}&activityid=${activityid}`;
+}
+
+function uploadMedia() {
+    var uploadcnt = document.getElementById('upload-media').files.length;
+    var progresscnt = 0;
+    for (var i = 0; i < uploadcnt ; i++) {
+        var formData = new FormData();
+        formData.append('upload', document.getElementById('upload-media').files[i]);
+        $.ajax({
+            url: baseurl + 'upload/media/' + activityid,
+            type: 'POST',
+            headers: {"Authorization": authToken}, 
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function() {
+                progresscnt++;
+                if (progresscnt == uploadcnt) {
+                    uploadComplete();
+                }
+            },
+            error: function(response) {
+                try {
+                    window.alert(`Error: ${response.responseJSON.message}`);
+                }
+                catch (e) {
+                    window.alert(`Error`);
+                }
+            }
+        });
+    }
 }
