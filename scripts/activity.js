@@ -73,7 +73,8 @@ function activitiesLoaded(json) {
 
 function initMap() {
   map = L.map('map').setView([34, -84], 13);
-  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+      subdomains:['a','b','c'],
       maxZoom: 19,
       attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
   }).addTo(map);
