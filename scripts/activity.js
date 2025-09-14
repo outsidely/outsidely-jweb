@@ -76,7 +76,7 @@ function initMap() {
   L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
       subdomains:['a','b','c'],
       maxZoom: 19,
-      attribution: 'Map data: © OpenStreetMap contributors, SRTM | Map presentation: © OpenTopoMap (CC-BY-SA)'
+      attribution: 'Map data: &copy; OpenStreetMap contributors, SRTM | Map presentation: &copy; OpenTopoMap (CC-BY-SA)'
   }).addTo(map);
   $.ajax({
     url: baseurl + "data/geojson/" + activityid, 
