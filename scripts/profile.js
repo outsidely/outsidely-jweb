@@ -12,6 +12,7 @@ function init() {
                 $('#lastname').val(response.lastname);
                 $('#email').val(response.email);
                 $('#unitsystem').val(response.unitsystem);
+                $('#ntfy').val(response.ntfy);
             });
         }
     });
