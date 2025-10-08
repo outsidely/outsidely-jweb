@@ -1,9 +1,23 @@
 function init() {
+
+    $('#clearNotifications').click(function() {
+        $.ajax({
+            url: baseurl + 'delete/notification/all',
+            type: 'DELETE',
+            headers: {"Authorization": authToken},
+            success: function() {
+                location.reload();
+            }
+        });
+    });
     
     $.ajax({
         url: baseurl + 'read/notifications',
         headers: {"Authorization": authToken}, 
         success: function(json) {
+            if (json.notifications.length > 0) {
+                $('#clearNotifications').show();
+            }
             html = '';
             for (i in json.notifications) {
                 n = json.notifications[i];
