@@ -73,10 +73,10 @@ function activitiesLoaded(json) {
 
 function initMap() {
   map = L.map('map').setView([34, -84], 13);
-  L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
-      subdomains:['a','b','c'],
+  L.tileLayer('https://{s}.google.com/vt/lyrs=y&x={x}&y={y}&z={z}', {
+      subdomains:['mt0','mt1','mt2','mt3'],
       maxZoom: 19,
-      attribution: 'Map data: &copy; OpenStreetMap contributors, SRTM | Map presentation: &copy; OpenTopoMap (CC-BY-SA)'
+      attribution: 'Tiles by Google'
   }).addTo(map);
   $.ajax({
     url: baseurl + "data/geojson/" + activityid, 
