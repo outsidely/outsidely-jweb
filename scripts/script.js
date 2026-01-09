@@ -105,6 +105,12 @@ function loadActivities(url, includepreview, callback) {
         url: url, 
         headers: {"Authorization": authToken}, 
         success: function(json) {
+            var div;
+            if (json.activities.length == 0) {
+                loadingactivities = false;
+                loadActivities(baseurl + json.nexturl, true);
+                return;
+            }
             for (i in json.activities) {
 
                 a = json.activities[i]
@@ -201,14 +207,17 @@ function loadActivities(url, includepreview, callback) {
 
             }
 
-            $('#activities').append(div);
+            if (div) {
+                $('#activities').append(div);
+            }
+
             nexturl = baseurl + json.nexturl;
 
             $('#progress').hide();
 
-            loadingactivities = false;
-
             callback(json);
+
+            loadingactivities = false;
 
         }
       });
