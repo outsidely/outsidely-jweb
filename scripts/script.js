@@ -294,7 +294,7 @@ function fillGear(activitytype, defaultvalue, callback, activeonly = false) {
 }
 
 function apiDelete(type, id, id2, redirecturl) {
-    if (skipconfirm || confirm("Are you sure you want to delete this " + type + "?")) {
+    if (confirm("Are you sure you want to delete this " + type + "?")) {
         var url = baseurl + "delete/" + type + "/" + id;
     if (id2 != undefined) {
         url += "/" + id2;
