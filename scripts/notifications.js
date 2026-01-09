@@ -1,14 +1,7 @@
 function init() {
 
     $('#clearNotifications').click(function() {
-        $.ajax({
-            url: baseurl + 'delete/notification/all',
-            type: 'DELETE',
-            headers: {"Authorization": authToken},
-            success: function() {
-                location.reload();
-            }
-        });
+        apiDelete('notification', 'all', null, 'notifications.html');
     });
     
     $.ajax({
