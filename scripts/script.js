@@ -100,6 +100,7 @@ function loadActivities(url, includepreview, callback) {
     }
 
     $('#progress').show();
+    $('#next').hide();
 
     $.ajax({
         url: url, 
@@ -108,7 +109,8 @@ function loadActivities(url, includepreview, callback) {
             var div;
             if (json.activities.length == 0) {
                 loadingactivities = false;
-                loadActivities(baseurl + json.nexturl, true);
+                nexturl = json.nexturl;
+                loadActivities(baseurl + nexturl, true);
                 return;
             }
             for (i in json.activities) {
@@ -214,6 +216,7 @@ function loadActivities(url, includepreview, callback) {
             nexturl = baseurl + json.nexturl;
 
             $('#progress').hide();
+            $('#next').show();
 
             callback(json);
 

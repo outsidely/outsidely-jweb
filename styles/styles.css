@@ -391,3 +391,9 @@ li.dropdown {
 .statistics-value {
     display: inline-block
 }
+
+#activities,#progress,#next {
+    width: 100%;
+    max-width: 800px;
+    margin: 10px auto;
+}
